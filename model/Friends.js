@@ -1,6 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connect");
-const User = require("./User");
+import Sequelize from "sequelize";
+import { sequelize } from "../config/connect";
 const Friend = sequelize.define(
     "friends", {
         id: {
@@ -34,8 +33,5 @@ const Friend = sequelize.define(
         timestamps: false,
     }
 );
-
-Friend.belongsTo(User, { as: "ban", foreignKey: "friend" });
-Friend.belongsTo(User, { as: "user", foreignKey: "user_id" });
 
 export default Friend;

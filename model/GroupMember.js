@@ -1,6 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connect");
-const User = require("./User");
+import Sequelize from "sequelize";
+import { sequelize } from "../config/connect";
 const GroupMember = sequelize.define(
     "group_member", {
         id: {
@@ -30,7 +29,5 @@ const GroupMember = sequelize.define(
         timestamps: false,
     }
 );
-
-GroupMember.belongsTo(User, { foreignKey: "user_id" });
 
 export default GroupMember;

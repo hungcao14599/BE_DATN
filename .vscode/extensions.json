@@ -1,6 +1,10 @@
 {
-    "recommendations": [
-        "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint"
-    ]
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "xabikos.javascriptsnippets",
+    "dzannotti.vscode-babel-coloring",
+    "henry-li.vscode-import-formatter",
+    "moppitz.vscode-extension-auto-import"
+  ]
 }

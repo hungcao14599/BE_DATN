@@ -1,6 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connect");
-const Post = require("./Post");
+import Sequelize from "sequelize";
+import { sequelize } from "../config/connect";
 const Image = sequelize.define(
     "images", {
         id: {
@@ -50,7 +49,5 @@ const Image = sequelize.define(
         timestamps: false,
     }
 );
-
-Image.belongsTo(Post, { foreignKey: "id_post" });
 
 export default Image;

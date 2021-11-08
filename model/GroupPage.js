@@ -1,7 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connect");
-const User = require("./User");
-const GroupMember = require("./GroupMember");
+import Sequelize from "sequelize";
+import { sequelize } from "../config/connect";
 const GroupPage = sequelize.define(
     "group_pages", {
         id: {
@@ -55,8 +53,5 @@ const GroupPage = sequelize.define(
         timestamps: false,
     }
 );
-
-GroupPage.belongsTo(User, { foreignKey: "created_by" });
-GroupPage.hasMany(GroupMember, { foreignKey: "group_id" });
 
 export default GroupPage;

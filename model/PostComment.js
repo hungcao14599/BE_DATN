@@ -1,7 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connect");
-const User = require("./User");
-const Post = require("./Post");
+import Sequelize from "sequelize";
+import { sequelize } from "../config/connect";
 const PostComment = sequelize.define(
     "post_comments", {
         id: {
@@ -43,8 +41,5 @@ const PostComment = sequelize.define(
         timestamps: false,
     }
 );
-
-PostComment.belongsTo(User, { foreignKey: "created_by" });
-PostComment.belongsTo(Post, { foreignKey: "post_id" });
 
 export default PostComment;

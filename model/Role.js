@@ -1,6 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connect");
-const User = require("./User");
+import Sequelize from "sequelize";
+import { sequelize } from "../config/connect";
 const Role = sequelize.define(
     "roles", {
         id: {
@@ -42,7 +41,5 @@ const Role = sequelize.define(
         timestamps: false,
     }
 );
-/* Many to Many */
-Role.belongsToMany(User, { through: UserRole, foreignKey: "role_id" });
 
 export default Role;

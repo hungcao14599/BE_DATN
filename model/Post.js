@@ -1,10 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connect");
-const User = require("./User");
-const PostComment = require("./PostComment");
-const PostLike = require("./PostLike");
-const GroupPage = require("./GroupPage");
-const Image = require("./Image");
+import Sequelize from "sequelize";
+import { sequelize } from "../config/connect";
 const Post = sequelize.define(
     "posts", {
         id: {
@@ -59,11 +54,5 @@ const Post = sequelize.define(
         timestamps: false,
     }
 );
-
-Post.belongsTo(User, { foreignKey: "created_by" });
-Post.hasMany(PostComment, { as: "comment", foreignKey: "post_id" });
-Post.hasMany(PostLike, { as: "like", foreignKey: "post_id" });
-Post.hasMany(Image, { foreignKey: "post_id" });
-Post.belongsTo(GroupPage, { foreignKey: "group_id" });
 
 export default Post;

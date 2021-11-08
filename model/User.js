@@ -1,9 +1,6 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connect");
-const Friend = require("./Friends");
-const UserRole = require("./UserRole");
-const Post = require("./Post");
-const MemberChat = require("./MemberChat");
+import Sequelize from "sequelize";
+import { sequelize } from "../config/connect";
+
 const User = sequelize.define(
     "users", {
         id: {
@@ -85,10 +82,5 @@ const User = sequelize.define(
         timestamps: false,
     }
 );
-
-User.belongsToMany(Role, { through: UserRole, foreignKey: "user_id" });
-User.hasMany(MemberChat, { foreignKey: "user_id" });
-User.hasMany(Post, { foreignKey: "created_by" });
-User.hasMany(Friend, { foreignKey: "user_id" });
 
 export default User;

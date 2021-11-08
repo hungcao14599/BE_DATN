@@ -1,7 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connect");
-const Chat = require("./Chat");
-const User = require("./User");
+import Sequelize from "sequelize";
+import { sequelize } from "../config/connect";
 const Message = sequelize.define(
     "messages", {
         id: {
@@ -43,8 +41,5 @@ const Message = sequelize.define(
         timestamps: false,
     }
 );
-
-Message.belongsTo(Chat, { foreignKey: "chat_id" });
-Message.belongsTo(User, { foreignKey: "sender" });
 
 export default Message;

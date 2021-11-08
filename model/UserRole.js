@@ -1,5 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connect");
+import Sequelize from "sequelize";
+import { sequelize } from "../config/connect";
 
 const UserRole = sequelize.define(
     "user_role", {
@@ -9,7 +9,7 @@ const UserRole = sequelize.define(
             primaryKey: true,
         },
         idRole: {
-            field: "role_id",
+            field: "id_role",
             type: Sequelize.INTEGER,
             primaryKey: true,
         },

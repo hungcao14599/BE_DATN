@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-import { sequelize, Op } from "../config/database";
+import { sequelize } from "../config/connect";
 
 const MemberChat = sequelize.define(
     "member_chat", {
@@ -30,8 +30,5 @@ const MemberChat = sequelize.define(
         timestamps: false,
     }
 );
-
-MemberChat.belongsTo(Chat, { foreignKey: "chat_id" });
-MemberChat.belongsTo(User, { foreignKey: "user_id" });
 
 export default MemberChat;

@@ -1,7 +1,5 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/connect");
-const User = require("./User");
-const Post = require("./Post");
+import Sequelize from "sequelize";
+import { sequelize } from "../config/connect";
 const PostLike = sequelize.define(
     "post_likes", {
         id: {
@@ -27,8 +25,5 @@ const PostLike = sequelize.define(
         timestamps: false,
     }
 );
-
-PostLike.belongsTo(User, { foreignKey: "created_by" });
-PostLike.belongsTo(Post, { foreignKey: "post_id" });
 
 export default PostLike;
