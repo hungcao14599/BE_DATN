@@ -38,21 +38,6 @@ export const login = async({ username, password }) => {
             status: user.status,
             role: roles,
         });
-
-        // res.json({
-        //     success: true,
-        //     message: "USER LOGGED IN SUCCESSFUL",
-        //     accessToken,
-        //     user: {
-        //         id: user.id,
-        //         username: user.username,
-        //         email: user.email,
-        //         avatar: user.avatar,
-        //         status: user.status,
-        //         role: roles,
-        //     },
-        // });
-
         return {
             user: {
                 id: user.id,
@@ -78,30 +63,37 @@ export const register = async({
     lastname,
 }) => {
     if (await User.findOne({ where: { username } })) {
-        throw new BaseError(401, "username already taken");
+        throw new BaseError(401, "USERNAME ALREADY EXISTS");
     }
     if (await User.findOne({ where: { email } })) {
-        throw new BaseError(402, "email already taken");
+        throw new BaseError(402, "EMAIL ALREADY EXISTS");
     }
-    const passwordHash = bcrypt.hashSync(password, 10);
-    const code = Math.floor(Math.random() * (1000000 - 100000)) + 100000;
-    const newUser = await User.create({
-        username,
-        password: passwordHash,
-        email,
-        firstname,
-        lastname,
-        status: 0,
-        verifyCode: code,
-        createdAt: Date.now() + 3600000 * 7,
-        updatedAt: Date.now() + 3600000 * 7,
-        avatar: "blank.jpg",
-    });
-    await newUser.addRole(3);
-    mailer.sendMail(
-        email,
-        "Thông báo đăng ký tài khoản",
-        `<h2>Chúc mừng bạn đăng ký tài khoản thành công!<h2/><p style="font-weight:500;">Mã xác nhận của bạn là: <span style="font-weight:600;">${code}</span></p>`
-    );
-    return newUser;
+    try {
+        const passwordHash = bcrypt.hashSync(password, 10);
+        const code = Math.floor(Math.random() * (1000000 - 100000)) + 100000;
+        const newUser = await User.create({
+            username,
+            password: passwordHash,
+            email,
+            firstname,
+            lastname,
+            status: 0,
+            verifyCode: code,
+            createdAt: Date.now() + 3600000 * 7,
+            updatedAt: Date.now() + 3600000 * 7,
+            avatar: "blank.jpg",
+        });
+        await newUser.addRole(3);
+        mailer.sendMail(
+            email,
+            "Notice of account registration",
+            `<h2>Successful Refistration!<h2/>
+            <p style="font-weight:500;">Your verification code is: <span style="font-weight:600;">${code}</span></p>
+            <p>Activate the account with the verification code to complete the registration.</p>`
+        );
+        return newUser;
+    } catch (error) {
+        console.log(error);
+        throw new BaseError(500, "INTERNAL SERVER ERROR");
+    }
 };
