@@ -17,7 +17,7 @@ export const verifyToken = (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
-        req.userId = decoded.userId;
+        req.user = decoded.data;
         // kiem tra xong roi cho qua next()
         next();
     } catch (error) {
@@ -26,31 +26,32 @@ export const verifyToken = (req, res, next) => {
     }
 };
 
-// export const verifyToken = (roles) => (request, response, next) => {
-//     if (typeof request.headers.authorization !== "undefined") {
-//         let token = request.headers.authorization.split(" ")[1];
-//         jwt.verify(token, EnvConfig, (err, user) => {
-//             if (err) {
-//                 return response.status(401).json({
-//                     status: 401,
-//                     message: "Incorrect token",
-//                 });
-//                 // throw new Error("Incorrect token");
-//             }
-//             if (roles && !roles.includes(user.data.role)) {
-//                 return response.status(403).json({
-//                     status: 403,
-//                     message: "access denied",
-//                 });
-//             }
-//             request.jwtDecoded = user.data;
-//             return next();
-//         });
-//     } else {
-//         return response.status(401).json({
-//             status: 401,
-//             message: "Missing token",
-//         });
-//         // throw new Error("Missing token");
-//     }
-// };
+export const verifyTokenRole = (roles) => (req, res, next) => {
+    if (typeof req.headers.authorization !== "undefined") {
+        let token = req.headers.authorization.split(" ")[1];
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+            if (err) {
+                return response.status(401).json({
+                    status: 401,
+                    message: "Incorrect token",
+                });
+                // throw new Error("Incorrect token");
+            }
+
+            if (roles && !roles.includes(req.data.role)) {
+                return res.status(403).json({
+                    status: 403,
+                    message: "access denied",
+                });
+            }
+            req.jwtDecoded = user.data;
+            return next();
+        });
+    } else {
+        return res.status(401).json({
+            status: 401,
+            message: "Missing token",
+        });
+        // throw new Error("Missing token");
+    }
+};

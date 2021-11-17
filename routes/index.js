@@ -1,12 +1,9 @@
 import express from "express";
 import authRouter from "./auths";
-
+import userRouter from "./users";
 var router = express.Router();
 
-/* GET home page. */
-router.get("/", function(req, res, next) {
-    res.render("index", { title: "Express" });
-});
 router.use("/api/auth", authRouter);
+router.use("/api/users", userRouter);
 
 module.exports = router;

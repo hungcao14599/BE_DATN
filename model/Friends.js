@@ -18,14 +18,14 @@ const Friend = sequelize.define(
         },
         status: {
             field: "status",
-            type: Sequelize.INTEGER,
+            type: Sequelize.ENUM(1, 2, 3),
         },
         createAt: {
-            field: "create_at",
+            field: "created_at",
             type: Sequelize.DATE,
         },
         updateAt: {
-            field: "update_at",
+            field: "updated_at",
             type: Sequelize.DATE,
         },
     }, {

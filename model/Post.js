@@ -22,7 +22,7 @@ const Post = sequelize.define(
         },
         type: {
             field: "type",
-            type: Sequelize.INTEGER,
+            type: Sequelize.ENUM(1, 2, 3),
         },
         /* foreignKey */
         createdBy: {

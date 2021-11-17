@@ -15,7 +15,6 @@ export const login = async(req, res) => {
             accessToken: user.accessToken,
         });
     } catch (error) {
-        console.log(error);
         throw new BaseError(500, "INTERNAL SERVER ERROR");
     }
 };

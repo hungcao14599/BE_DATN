@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+import express from "express";
+import * as userController from "../controllers/user.controller";
+import { verifyToken, verifyTokenRole } from "../middleware/authJWT";
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const router = express.Router();
 
-module.exports = router;
+router.get("/", userController.fetchAllUsers);
+router.get("/name/:username", userController.fetchUserByName);
+router.put("/update", verifyToken, userController.updateUserInfo);
+
+export default router;
