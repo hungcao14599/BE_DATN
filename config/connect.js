@@ -14,4 +14,4 @@ export const sequelize = new Sequelize(DB_NAME, DB_USERNAME, PASSWORD, {
     },
 });
 
-export const OP = Sequelize.Op;
+export const Op = Sequelize.Op;

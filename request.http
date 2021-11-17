@@ -1,11 +1,11 @@
-POST http://localhost:3000/auth/register/
+POST http://localhost:3000/api/auth/register/
 Content-Type: application/json
 
 {
-  "username": "admin1",
+  "username": "admin2",
   "password": "123456",
-  "email": "minhcola9999@gmail.com",
-  "firstname": "HUNG",
+  "email": "nguyentuanminhutt@gmail.com",
+  "firstname": "MINH",
   "lastname": "CAO"
 }
 
@@ -17,4 +17,15 @@ Content-Type: application/json
 {
   "username": "admin1",
   "password": "123456"
+}
+
+
+###
+
+PUT http://localhost:3000/api/users/update
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM3MTMzODM2fQ.YlO4EU8-zC9hWzy3eTE0zbM8xB9LKvEOrF4W2yFB0JU
+
+{
+  "phone": "0853285061"
 }
