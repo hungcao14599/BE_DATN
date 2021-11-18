@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import EnvConfig from "../config/env.config";
 
 export const generateToken = (user) => {
     return jwt.sign({ data: user }, process.env.ACCESS_TOKEN_SECRET);
@@ -38,13 +37,13 @@ export const verifyTokenRole = (roles) => (req, res, next) => {
                 // throw new Error("Incorrect token");
             }
 
-            if (roles && !roles.includes(req.data.role)) {
+            if (roles && !roles.includes(user.data.role)) {
                 return res.status(403).json({
                     status: 403,
                     message: "access denied",
                 });
             }
-            req.jwtDecoded = user.data;
+            req.user = user.data;
             return next();
         });
     } else {
@@ -52,6 +51,5 @@ export const verifyTokenRole = (roles) => (req, res, next) => {
             status: 401,
             message: "Missing token",
         });
-        // throw new Error("Missing token");
     }
 };

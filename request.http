@@ -15,7 +15,7 @@ POST http://localhost:3000/api/auth/login/
 Content-Type: application/json
 
 {
-  "username": "admin1",
+  "username": "admin2",
   "password": "123456"
 }
 
@@ -24,8 +24,39 @@ Content-Type: application/json
 
 PUT http://localhost:3000/api/users/update
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM3MTMzODM2fQ.YlO4EU8-zC9hWzy3eTE0zbM8xB9LKvEOrF4W2yFB0JU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM3MTM2NjUyfQ.LMs9no_-n3osxE3B1tiehRktovRRZL4FnO7nEFSjkKY
 
 {
-  "phone": "0853285061"
+  "phone": "999999"
 }
+
+###
+POST http://localhost:3000/api/users/verify
+Content-Type: application/json
+
+{
+  "verifyCode": "287206",
+  "email": "minhcola9999@gmail.com"
+}
+
+
+###
+GET http://localhost:3000/api/users/find?keyword=admin1
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM3MTYwNjc3fQ.wJZ22jPxXqh4Q3fIdUrviLq4A5QJWi8yXiNfqeLB4C4
+
+
+###
+GET http://localhost:3000/api/users/block-users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM3MTYwNjc3fQ.wJZ22jPxXqh4Q3fIdUrviLq4A5QJWi8yXiNfqeLB4C4
+
+
+###
+POST http://localhost:3000/api/users/block?id=33
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzcyMTg1Mjd9.-lPLX1v_wxMzJepf5GGv8yawD8HDtqUZZXiX4ptYV5M
+
+
+
+
