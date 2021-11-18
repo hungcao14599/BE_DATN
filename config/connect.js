@@ -12,6 +12,7 @@ export const sequelize = new Sequelize(DB_NAME, DB_USERNAME, PASSWORD, {
         require: 30000,
         idle: 10000,
     },
+    logging: console.log,
 });
 
 export const Op = Sequelize.Op;
