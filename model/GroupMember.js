@@ -8,11 +8,11 @@ const GroupMember = sequelize.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        idGroup: {
+        groupID: {
             field: "group_id",
             type: Sequelize.INTEGER,
         },
-        idUser: {
+        userID: {
             field: "user_id",
             type: Sequelize.INTEGER,
         },

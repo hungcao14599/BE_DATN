@@ -20,7 +20,7 @@ const Image = sequelize.define(
             field: "type",
             type: Sequelize.INTEGER,
         },
-        idPost: {
+        postID: {
             field: "post_id",
             type: Sequelize.INTEGER,
         },

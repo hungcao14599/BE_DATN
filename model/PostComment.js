@@ -12,7 +12,7 @@ const PostComment = sequelize.define(
             field: "content",
             type: Sequelize.STRING,
         },
-        idPost: {
+        postID: {
             field: "post_id",
             type: Sequelize.INTEGER,
         },

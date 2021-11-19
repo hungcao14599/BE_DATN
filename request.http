@@ -1,6 +1,7 @@
+#AUTH
 POST http://localhost:3000/api/auth/register/
 Content-Type: application/json
-
+#pass
 {
   "username": "admin2",
   "password": "123456",
@@ -13,50 +14,87 @@ Content-Type: application/json
 
 POST http://localhost:3000/api/auth/login/
 Content-Type: application/json
+#pass
 
 {
   "username": "admin2",
   "password": "123456"
 }
 
+#USER
+###
+
+GET http://localhost:3000/api/users/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM3MTM2NjUyfQ.LMs9no_-n3osxE3B1tiehRktovRRZL4FnO7nEFSjkKY
+#pass
 
 ###
 
 PUT http://localhost:3000/api/users/update
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM3MTM2NjUyfQ.LMs9no_-n3osxE3B1tiehRktovRRZL4FnO7nEFSjkKY
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzcyNDg5NjV9.3MVW3syS95TqsJuN6Hg9ALbVVH4QbHsmj83XbvitDSc
+#pass
 {
-  "phone": "999999"
+  "phone": "0968963562",
+  "description": "TTN1",
+  "address": "Yên Nghĩa, Hà Đông, Hà Nội"
 }
 
 ###
 POST http://localhost:3000/api/users/verify
 Content-Type: application/json
-
+#pass
 {
-  "verifyCode": "287206",
-  "email": "minhcola9999@gmail.com"
+  "verifyCode": "906200",
+  "email": "nguyentuanminhutt@gmail.com"
 }
 
 
 ###
-GET http://localhost:3000/api/users/find?keyword=admin1
+GET http://localhost:3000/api/users/find?keyword=987
 Content-Type: application/json
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM3MTYwNjc3fQ.wJZ22jPxXqh4Q3fIdUrviLq4A5QJWi8yXiNfqeLB4C4
-
+#pass
 
 ###
 GET http://localhost:3000/api/users/block-users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM3MTYwNjc3fQ.wJZ22jPxXqh4Q3fIdUrviLq4A5QJWi8yXiNfqeLB4C4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzI1MDI2OH0.9Ieu7xjOWrHv_kbCXfVB9bs_Bs2bTAyJqBWyUB5KhJc
+#pass
+
+###
+POST http://localhost:3000/api/users/block/32
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzI1MDI2OH0.9Ieu7xjOWrHv_kbCXfVB9bs_Bs2bTAyJqBWyUB5KhJc
+#pass
+
+###
+POST http://localhost:3000/api/users/unblock/32
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzI1MDI2OH0.9Ieu7xjOWrHv_kbCXfVB9bs_Bs2bTAyJqBWyUB5KhJc
+#pass
+
+
+#POST
+###
+GET http://localhost:3000/api/posts?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzczMzY4MDV9.r0Mb43pDVl8vM910vzskt2jRuVJw95QMLtmwDj7-QjU
+###
+GET http://localhost:3000/api/posts/post-item/50
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzczMzY4MDV9.r0Mb43pDVl8vM910vzskt2jRuVJw95QMLtmwDj7-QjU
 
 
 ###
-POST http://localhost:3000/api/users/block?id=33
+POST http://localhost:3000/api/posts/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzcyMTg1Mjd9.-lPLX1v_wxMzJepf5GGv8yawD8HDtqUZZXiX4ptYV5M
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzczMzY4MDV9.r0Mb43pDVl8vM910vzskt2jRuVJw95QMLtmwDj7-QjU
 
-
-
+{
+  "content": "I love U 3000",
+  "type": 1
+}
+post-item
 
