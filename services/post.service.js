@@ -145,8 +145,8 @@ export const addPost = async({ content, type, groupID }, createdBy) => {
             likes: 0,
             comments: 0,
         });
-        // const data = await fetchPostByUserID(createdBy, post.id);
-        return post;
+        const data = await fetchPostByUserID(createdBy, post.id);
+        return data;
     } catch (error) {
         throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
     }
@@ -171,10 +171,10 @@ export const updatePost = async({ id, content, images }, createdBy) => {
                 },
                 {
                     model: PostLike,
-                    as: "like",
                     attributes: ["id", "status"],
+                    as: "like",
                     where: { createdBy },
-                    require: false,
+                    required: false,
                 },
                 {
                     model: Image,
@@ -189,46 +189,51 @@ export const updatePost = async({ id, content, images }, createdBy) => {
             ...post,
             content,
             updatedAt: Date.now(),
+            // updatedBy: createdBy,
         });
         const imgs = await Image.findAll({
             where: { postID: id },
         });
         const list = [];
-        await Promise.all(imgs.map((item) => list.push(item.id)));
-        await Promise.all(async(item) => {
-            if (!images.include(item)) {
-                await Image.destroy({ where: { id: item } });
-            }
-        });
-        const postItem = await Post.findOne({
-            where: { id },
-            include: [{
-                    model: User,
-                    attributes: ["id", "username", "avatar"],
-                },
-                {
-                    model: PostComment,
-                    as: "comment",
-                    attributes: ["id", "content"],
-                    include: {
-                        model: User,
-                        attributes: ["id", "username", "avatar"],
-                    },
-                },
-                {
-                    model: PostLike,
-                    as: "like",
-                    attributes: ["id", "status"],
-                    where: { createdBy },
-                    require: false,
-                },
-                {
-                    model: Image,
-                    attributes: ["id", "name", "url"],
-                },
-            ],
-        });
-        return postItem;
+        await Promise.all(imgs.map(async(item) => list.push(item.id)));
+        await Promise.all(
+            list.map(async(item) => {
+                if (!images.include(item)) {
+                    await Image.destroy({ where: { id: item } });
+                }
+            })
+        );
+        // const postItem = await Post.findOne({
+        //     where: { id },
+        //     include: [{
+        //             model: User,
+        //             attributes: ["id", "username", "avatar"],
+        //         },
+        //         {
+        //             model: PostComment,
+        //             as: "comment",
+        //             attributes: ["id", "content"],
+        //             include: {
+        //                 model: User,
+        //                 attributes: ["id", "username", "avatar"],
+        //             },
+        //         },
+        //         {
+        //             model: PostLike,
+        //             attributes: ["id", "status"],
+        //             as: "like",
+        //             where: { createdBy },
+        //             required: false,
+        //         },
+        //         {
+        //             model: Image,
+        //             attributes: ["id", "name", "url"],
+        //         },
+        //     ],
+        // });
+        // return postItem;
+        const data = await fetchPostByUserID(createdBy, post.id);
+        return data;
     } catch (error) {
         throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
     }
@@ -253,8 +258,119 @@ export const uploadPostImages = async(req, res) => {
     return await fetchPostByUserID(req.user.id, parseInt(req.params.id));
 };
 
-export const deletePost = async({ postID }) => {
-    await Post.destroy({
-        where: { id: postID },
+export const deletePost = async({ id }, createdBy) => {
+    try {
+        const post = await Post.findOne({
+            where: { id },
+            include: {
+                model: User,
+                attributes: ["id", "username", "avatar"],
+            },
+        });
+        if (!post) throw new BaseError(httpStatus.NOT_FOUND, "INVALID POST");
+        if (post.user.id !== createdBy)
+            throw new BaseError(httpStatus.NOT_FOUND, "INVALID POST");
+        await post.update({
+            ...post,
+            isDelete: true,
+        });
+        return post;
+    } catch (error) {
+        throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    }
+};
+
+export const fetchAllPostByUserName = async({ username }, { size = 10, page = 1 },
+    createdBy
+) => {
+    const user = await User.findOne({ where: { username } });
+    if (!user) throw new BaseError(httpStatus.NOT_FOUND, "INVALID USER");
+    const posts = await Post.findAndCountAll({
+        where: {
+            isDelete: false,
+            createdBy: user.id,
+            groupID: null,
+        },
+        limit: parseInt(size),
+        offset: size * (page - 1),
+        include: [{
+                model: User,
+                attributes: ["id", "username", "avatar"],
+            },
+            {
+                model: PostComment,
+                as: "comment",
+                attributes: ["id", "content", "createdAt"],
+                include: {
+                    model: User,
+                    attributes: ["id", "username", "avatar"],
+                },
+            },
+            {
+                model: PostLike,
+                attributes: ["id", "status"],
+                as: "like",
+                where: { createdBy },
+                required: false,
+            },
+            {
+                model: Image,
+                attributes: ["id", "name", "url", "type"],
+            },
+        ],
     });
+    return {
+        data: posts.rows,
+        size,
+        length: posts.length,
+        currentPage: page,
+        totalpage: Math.ceil(posts.count / size),
+        totalElements: posts.count,
+    };
+};
+
+export const fetchAllPostByGroupID = async({ groupID }, { size = 10, page = 1 },
+    createdBy
+) => {
+    const posts = await Post.findAndCountAll({
+        where: {
+            isDelete: false,
+            groupID,
+        },
+        limit: parseInt(size),
+        offset: size * (page - 1),
+        include: [{
+                model: User,
+                attributes: ["id", "username", "avatar"],
+            },
+            {
+                model: PostComment,
+                as: "comment",
+                attributes: ["id", "content", "createdAt"],
+                include: {
+                    model: User,
+                    attributes: ["id", "username", "avatar"],
+                },
+            },
+            {
+                model: PostLike,
+                attributes: ["id", "status"],
+                as: "like",
+                where: { createdBy },
+                required: false,
+            },
+            {
+                model: Image,
+                attributes: ["id", "name", "url", "type"],
+            },
+        ],
+    });
+    return {
+        data: posts.rows,
+        size,
+        length: posts.length,
+        currentPage: page,
+        totalpage: Math.ceil(posts.count / size),
+        totalElements: posts.count,
+    };
 };
