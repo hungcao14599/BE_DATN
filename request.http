@@ -93,7 +93,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzczMzY4MDV9.r0Mb43pDVl8vM910vzskt2jRuVJw95QMLtmwDj7-QjU
 
 {
-  "content": "I love U 3000",
+  "content": "Hello world",
   "type": 1
 }
 
@@ -123,4 +123,32 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozM
 ###
 POST http://localhost:3000/api/post-mood/58
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzQ1ODA0OH0.N1s6DgBlXZiJcrKWqlJv-F3OQ-X_twjVy5dm7N7oXnQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzQ1OTMxOH0.sNGfjt6xlrZWTPsc2JiC2iwX8ii8Y9Rs-Kv2aI-S9gg
+
+
+#POSTCOMMENT
+
+###
+GET http://localhost:3000/api/post-comment/58?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzQ2NDM5MH0.rQN9oY72lqL8gC927COC7_QkxfzGrr57lZsszkaT1oM
+
+###
+POST http://localhost:3000/api/post-comment/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzUwNjYxNX0.TXXCLCDBSVNfp0aDknAFYciHHonEtWmo2O5AbdEocCk
+
+{
+  "content": "Hey",
+  "postID": 58
+}
+
+###
+PUT http://localhost:3000/api/post-comment/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzUwNjYxNX0.TXXCLCDBSVNfp0aDknAFYciHHonEtWmo2O5AbdEocCk
+
+{
+  "id": 28,
+  "content": "Hey Bro"
+}
