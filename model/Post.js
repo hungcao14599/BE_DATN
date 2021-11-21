@@ -45,8 +45,8 @@ const Post = sequelize.define(
             field: "updated_at",
             type: Sequelize.DATE,
         },
-        idGroup: {
-            field: "id_group",
+        groupID: {
+            field: "group_id",
             type: Sequelize.INTEGER,
         },
     }, {

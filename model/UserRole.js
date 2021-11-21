@@ -3,12 +3,12 @@ import { sequelize } from "../config/connect";
 
 const UserRole = sequelize.define(
     "user_role", {
-        idUser: {
+        userID: {
             field: "user_id",
             type: Sequelize.INTEGER,
             primaryKey: true,
         },
-        idRole: {
+        roleID: {
             field: "id_role",
             type: Sequelize.INTEGER,
             primaryKey: true,
