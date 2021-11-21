@@ -1,6 +1,6 @@
 import express from "express";
 import * as postController from "../controllers/post.controller";
-import { verifyToken, verifyTokenRole } from "../middleware/authJWT";
+import { verifyToken } from "../middleware/authJWT";
 
 const router = express.Router();
 
