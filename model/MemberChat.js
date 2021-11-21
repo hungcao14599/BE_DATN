@@ -9,11 +9,11 @@ const MemberChat = sequelize.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        idChat: {
+        chatID: {
             field: "chat_id",
             type: Sequelize.INTEGER,
         },
-        idUser: {
+        userID: {
             field: "user_id",
             type: Sequelize.INTEGER,
         },

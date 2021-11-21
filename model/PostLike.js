@@ -12,7 +12,7 @@ const PostLike = sequelize.define(
             field: "status",
             type: Sequelize.INTEGER,
         },
-        idPost: {
+        postID: {
             field: "post_id",
             type: Sequelize.INTEGER,
         },

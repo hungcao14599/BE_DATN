@@ -8,7 +8,7 @@ const Friend = sequelize.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        user_id: {
+        userID: {
             field: "user_id",
             type: Sequelize.INTEGER,
         },

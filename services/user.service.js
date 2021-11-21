@@ -28,7 +28,7 @@ export const fetchAllUsers = async({ page = 1, size = 10, search = "" }) => {
             status: 1,
             // [Op.or]: [{
             username: {
-                [Op.like]: `%${search}`,
+                [Op.like]: `%${search}%`,
             },
             // }, ],
         };
@@ -105,19 +105,19 @@ export const updateUserInfo = async(
         },
         include: [{
                 model: Role,
-                attributes: ["id", "role_name"],
+                attributes: ["id", "roleName"],
             },
-            {
-                model: Friend,
-                limit: 10,
-                offset: 0,
-                distinct: true,
-                include: [{
-                    model: User,
-                    as: "ban",
-                    attributes: ["id", "username", "avatar", "description"],
-                }, ],
-            },
+            // {
+            //     model: Friend,
+            //     limit: 10,
+            //     offset: 0,
+            //     distinct: true,
+            //     include: [{
+            //         model: User,
+            //         as: "ban",
+            //         attributes: ["id", "username", "avatar", "description"],
+            //     }, ],
+            // },
         ],
         attributes: attributes,
     });
@@ -225,7 +225,7 @@ export const setBlockUser = async(id) => {
         },
         include: [{
                 model: Role,
-                attributes: ["id", "role_name"],
+                attributes: ["id", "roleName"],
             },
             {
                 model: Friend,
