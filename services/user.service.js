@@ -80,7 +80,7 @@ export const fetchUserByName = async({ username }) => {
                     distinct: true,
                     include: [{
                         model: User,
-                        as: "ban",
+                        as: "user_friend",
                         attributes: ["id", "username", "avatar", "description"],
                     }, ],
                 },
@@ -234,7 +234,7 @@ export const setBlockUser = async(id) => {
                 distinct: true,
                 include: [{
                     model: User,
-                    as: "ban",
+                    as: "user_friend",
                     attributes: ["id", "username", "avatar", "description"],
                 }, ],
             },
@@ -270,7 +270,7 @@ export const setUnBlockUser = async(id) => {
                 distinct: true,
                 include: [{
                     model: User,
-                    as: "ban",
+                    as: "user_friend",
                     attributes: ["id", "username", "avatar", "description"],
                 }, ],
             },
