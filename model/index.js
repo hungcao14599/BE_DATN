@@ -42,7 +42,7 @@ PostLike.belongsTo(Post, { foreignKey: "post_id" });
 
 Image.belongsTo(Post, { foreignKey: "post_id" });
 
-Friend.belongsTo(User, { as: "ban", foreignKey: "friend" });
+Friend.belongsTo(User, { as: "user_friend", foreignKey: "friend" });
 Friend.belongsTo(User, { as: "user", foreignKey: "user_id" });
 
 GroupPage.belongsTo(User, { foreignKey: "created_by" });

@@ -2,12 +2,13 @@
 POST http://localhost:3000/api/auth/register/
 Content-Type: application/json
 #pass
+
 {
-  "username": "admin2",
+  "username": "admin",
   "password": "123456",
-  "email": "nguyentuanminhutt@gmail.com",
-  "firstname": "MINH",
-  "lastname": "CAO"
+  "email": "hungnguyen14599@gmail.com",
+  "firstname": "VIET",
+  "lastname": "HUNG"
 }
 
 ###
@@ -17,7 +18,7 @@ Content-Type: application/json
 #pass
 
 {
-  "username": "admin1",
+  "username": "admin",
   "password": "123456"
 }
 
@@ -45,9 +46,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozM
 POST http://localhost:3000/api/users/verify
 Content-Type: application/json
 #pass
+
 {
-  "verifyCode": "906200",
-  "email": "nguyentuanminhutt@gmail.com"
+  "verifyCode": "165445",
+  "email": "hungnguyen14599@gmail.com"
 }
 
 
@@ -66,13 +68,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozM
 ###
 POST http://localhost:3000/api/users/block/32
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzI1MDI2OH0.9Ieu7xjOWrHv_kbCXfVB9bs_Bs2bTAyJqBWyUB5KhJc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzU0NzM3Nn0.CjqWvvzgbq9ETJf3_erSEyGTSSMyq0r99cQW1Hf1XNI
 #pass
 
 ###
 POST http://localhost:3000/api/users/unblock/32
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzI1MDI2OH0.9Ieu7xjOWrHv_kbCXfVB9bs_Bs2bTAyJqBWyUB5KhJc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzU0NzM3Nn0.CjqWvvzgbq9ETJf3_erSEyGTSSMyq0r99cQW1Hf1XNI
 #pass
 
 
@@ -131,7 +133,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozM
 ###
 GET http://localhost:3000/api/post-comment/58?size=10&page=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzQ2NDM5MH0.rQN9oY72lqL8gC927COC7_QkxfzGrr57lZsszkaT1oM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzUxMDI2NH0.V194ns0eMv_38BqkgWUi-hqzcEMNNUoscY7vsZXT0_0
 
 ###
 POST http://localhost:3000/api/post-comment/
@@ -146,9 +148,51 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozM
 ###
 PUT http://localhost:3000/api/post-comment/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzUwNjYxNX0.TXXCLCDBSVNfp0aDknAFYciHHonEtWmo2O5AbdEocCk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzUxMDI2NH0.V194ns0eMv_38BqkgWUi-hqzcEMNNUoscY7vsZXT0_0
 
 {
-  "id": 28,
-  "content": "Hey Bro"
+  "id": 30,
+  "content": "NCC"
 }
+
+###
+PUT http://localhost:3000/api/post-comment/delete/30
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzUxMDI2NH0.V194ns0eMv_38BqkgWUi-hqzcEMNNUoscY7vsZXT0_0
+
+#FRIEND
+
+
+###
+GET http://localhost:3000/api/friend/user-friend?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc1NzM3NTF9.sF4SHcuOcHJOxjOnhKfN1brJq2xAwR8jZ6YLCASZkFw
+
+
+
+###
+GET http://localhost:3000/api/friend/not-friend?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc1NzEwOTl9._D39SFI7INrNmUEF038EWlZaJl1A4JoZeHEDpc-7hGg
+
+
+
+###
+POST http://localhost:3000/api/friend/add/33
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzU3NjQ5MH0.qJylOigJAfcZUgZd9PCNG-Y6jG03bP-YENUpXUU3_Uk
+
+###
+POST http://localhost:3000/api/friend/approval/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc1NzM2Njd9.zyLHdvZ5rUW3-ZGAhYQI0DL2U9cQNQgxjFNNuMCIRz0
+
+{
+  "friend": "32",
+  "isApproval": true
+}
+
+###
+GET http://localhost:3000/api/friend/approval?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc1OTA4NzN9.buBhHi11roDKdBn-hfi_vVPOObAwiNYbFwm9Hg8Iies
