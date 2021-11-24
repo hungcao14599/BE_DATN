@@ -18,7 +18,7 @@ Content-Type: application/json
 #pass
 
 {
-  "username": "admin",
+  "username": "admin1",
   "password": "123456"
 }
 
@@ -196,3 +196,69 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozM
 GET http://localhost:3000/api/friend/approval?size=10&page=1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc1OTA4NzN9.buBhHi11roDKdBn-hfi_vVPOObAwiNYbFwm9Hg8Iies
+
+# GROUPS
+
+###
+GET http://localhost:3000/api/groups/?&size=10&page=1
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc1OTA4NzN9.buBhHi11roDKdBn-hfi_vVPOObAwiNYbFwm9Hg8Iies
+
+
+###
+POST http://localhost:3000/api/groups
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzc0MTg2MX0.fbUa4Y1K60srF-k9ByktGbh2t4wTGXulKEL8tWgC_PA
+
+{
+  "name": "FPT Software",
+  "description": "El Pueblo Unido"
+}
+
+###
+PUT http://localhost:3000/api/groups
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzc0MTg2MX0.fbUa4Y1K60srF-k9ByktGbh2t4wTGXulKEL8tWgC_PA
+
+{
+  "id": 13,
+  "name": "FPT SOFTWARE",
+  "description": "El Pueblo Unido"
+}
+
+###
+POST http://localhost:3000/api/groups/join-group/10
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc3MjU5MTZ9.M7FAMwE5SCTG5zy79ryjaejtFPDkM47PS1Wjl3c3KKI
+
+
+###
+POST http://localhost:3000/api/groups/approval
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc3MjU0NDl9.HWUfedJo7Co9E9eyz5Av6ZVBvTEvwaPbsWI7nFcJEmc
+
+{
+  "userID": 32,
+  "groupID": 10,
+  "isApproval": false
+}
+
+###
+GET http://localhost:3000/api/groups/members/10?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc3Mjc5NzV9.ih9tUyLsM1w6u5SDaRaH9ticiQ_CtT4NB05AOi4hnAY
+
+###
+GET http://localhost:3000/api/groups/users-join/10?size=10&page=1&keyword=hc
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc3Mjc5NzV9.ih9tUyLsM1w6u5SDaRaH9ticiQ_CtT4NB05AOi4hnAY
+
+###
+GET http://localhost:3000/api/groups/groups-info?size=10&page=1&keyword=NCC
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc3Mzc5NjR9.lUlpZLgM0a4nvZ10BWB05COfrVXDp21PnoQIH5aBDbM
+
+###
+GET http://localhost:3000/api/groups/other-groups?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzc0MTg2MX0.fbUa4Y1K60srF-k9ByktGbh2t4wTGXulKEL8tWgC_PA
