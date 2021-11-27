@@ -1,8 +1,8 @@
 class BaseError extends Error {
-    constructor(statusCode, description, isOperational = true, stack = "") {
-        super(description);
+    constructor(statusCode, message, isOperational = true, stack = "") {
+        super(message);
 
-        Object.setPrototypeOf(this, new.target.prototype);
+        // Object.setPrototypeOf(this, new.target.prototype);
 
         this.statusCode = statusCode;
         this.isOperational = isOperational;
@@ -14,4 +14,4 @@ class BaseError extends Error {
     }
 }
 
-module.exports = BaseError;
+export default BaseError;
