@@ -18,7 +18,7 @@ Content-Type: application/json
 #pass
 
 {
-  "username": "admin1",
+  "username": "admin",
   "password": "123456"
 }
 

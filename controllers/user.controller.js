@@ -1,6 +1,7 @@
 import * as userService from "../services/user.service";
 import BaseError from "../utils/baseError";
 import httpStatus from "http-status";
+import { User } from "../model";
 
 export const fetchAllUsers = async(req, res) => {
     try {
@@ -42,15 +43,42 @@ export const updateUserInfo = async(req, res) => {
 };
 
 export const verifyAccount = async(req, res) => {
+    // try {
+    //     const account = await userService.verifyAccount(req.body);
+    //     res.json({
+    //         data: account,
+    //         status: httpStatus[200],
+    //         message: "ACTIVATED ACCOUNT SUCCESSFULLY",
+    //     });
+    // } catch (error) {
+    //     throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    // }
+
     try {
-        const account = await userService.verifyAccount(req.body);
-        res.json({
-            data: account,
-            status: httpStatus[200],
-            message: "ACTIVATED ACCOUNT SUCCESSFULLY",
-        });
+        const { email, verifyCode } = req.body;
+        const account = await User.findOne({ where: { email } });
+        if (!account) {
+            res.status(404).send({ status: 404, message: "Invalid Email" });
+        } else if (account.status !== 0) {
+            res.status(404).send({ status: 405, message: "Account Activated" });
+        } else if (account.verifyCode !== verifyCode) {
+            res.status(404).send({ status: 405, message: "Incorrect Code" });
+        } else {
+            await account.update({
+                status: 1,
+                updatedAt: Date.now(),
+            });
+
+            return res.json({
+                status: 200,
+                message: "Account Activation Successful",
+            });
+        }
     } catch (error) {
-        throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+        });
     }
 };
 
