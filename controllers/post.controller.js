@@ -1,6 +1,8 @@
 import * as postService from "../services/post.service";
 import BaseError from "../utils/baseError";
 import httpStatus from "http-status";
+import { Image, Post, PostComment, PostLike, User } from "../model";
+import { multipleUploadFile } from "../middleware/uploadMulter";
 const fs = require("fs");
 
 export const fetchAllPostsOfUser = async(req, res) => {
@@ -17,29 +19,76 @@ export const fetchAllPostsOfUser = async(req, res) => {
 };
 export const fetchPostByUserID = async(req, res) => {
     try {
-        const post = await postService.fetchPostByUserID(
-            req.user.id,
-            req.params.id
-        );
-        res.json({
+        const { id } = req.params;
+        const post = await Post.findOne({
+            where: { id, isDelete: false },
+            include: [{
+                    model: User,
+                    attributes: ["id", "username", "avatar"],
+                },
+                {
+                    model: PostComment,
+                    as: "comment",
+                    attributes: ["id", "content", "createdAt"],
+                    include: {
+                        model: User,
+                        attributes: ["id", "username", "avatar"],
+                    },
+                },
+                {
+                    model: PostLike,
+                    attributes: ["id", "status"],
+                    as: "like",
+                    where: { createdBy: req.user.id },
+                    required: false,
+                },
+                {
+                    model: Image,
+                    attributes: ["id", "name", "url"],
+                },
+            ],
+        });
+        if (!post) {
+            res.status(httpStatus.NOT_FOUND).json({
+                status: httpStatus.NOT_FOUND,
+                message: "INVALID POST",
+            });
+        }
+        return res.json({
             data: post,
-            status: httpStatus[200],
-            message: "FETCH POST SUCCESSFULLY",
+            status: httpStatus[201],
+            message: "Fetch Posts Successfully",
         });
     } catch (error) {
-        throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+        });
     }
 };
 export const addPost = async(req, res) => {
     try {
-        const post = await postService.addPost(req.body, req.user.id);
-        res.json({
+        const { content, type, groupID } = req.body;
+        const post = await Post.create({
+            content,
+            type,
+            createdBy: req.user.id,
+            groupID: type === 3 ? groupID : null,
+            createdAt: Date.now(),
+            isDelete: false,
+            likes: 0,
+            comments: 0,
+        });
+        return res.json({
             data: post,
             status: httpStatus[201],
-            message: "ADD POSTS SUCCESSFULLY",
+            message: "Add Posts Successfully",
         });
     } catch (error) {
-        throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+        });
     }
 };
 
@@ -112,5 +161,21 @@ export const fetchImageInPost = async(req, res) => {
         });
     } catch (error) {
         throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    }
+};
+
+export const uploadPostImages = async(req, res) => {
+    try {
+        const post = await postService.uploadPostImages(req, res);
+        res.json({
+            status: 200,
+            data: post,
+            message: "Success",
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+        });
     }
 };

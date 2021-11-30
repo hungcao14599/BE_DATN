@@ -21,4 +21,6 @@ router.get(
 );
 router.get("/image/:image", postController.fetchImageInPost);
 
+router.post("/upload/:id", verifyToken, postController.uploadPostImages);
+
 export default router;

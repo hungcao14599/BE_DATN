@@ -240,7 +240,7 @@ export const updatePost = async({ id, content, images }, createdBy) => {
 };
 
 export const uploadPostImages = async(req, res) => {
-    req.up = "./assets/image/post";
+    req.des = "./assets/image/post";
     await multipleUploadFile(req, res);
     await Promise.all(
         req.files.map(async(file) => {
@@ -251,11 +251,11 @@ export const uploadPostImages = async(req, res) => {
                 createdBy: req.user.id,
                 isDelete: false,
                 createdAt: Date.now(),
-                postID: parseInt(req.params.id),
+                postID: req.params.id,
             });
         })
     );
-    return await fetchPostByUserID(req.user.id, parseInt(req.params.id));
+    return await fetchPostByUserID(req.user.id, req.params.id);
 };
 
 export const deletePost = async({ id }, createdBy) => {

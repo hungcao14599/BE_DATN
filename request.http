@@ -18,7 +18,7 @@ Content-Type: application/json
 #pass
 
 {
-  "username": "admin",
+  "email": "nguyentuanminhutt@gmail.com",
   "password": "123456"
 }
 
@@ -84,18 +84,27 @@ GET http://localhost:3000/api/posts?size=10&page=1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzQyNzkyNX0.UQx_cOXN0AFNs1oh-F84rOIdJsD2kspbtDSlNb4T4k4
 ###
-GET http://localhost:3000/api/posts/post-item/56
+GET http://localhost:3000/api/posts/post-item/58
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzczNDM2OTF9.Rn5GL5TGHVDkpDksqQgWXCZ_VUixqQKZZM8SxaOqCAY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzgyNDA3NzZ9.9TSU9yWYGEon1AXEbGjWJDGR9TlIgedSf7FhPSTBWw0
 
+###
+POST http://localhost:3000/api/posts/upload/58
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzgyNjI2MTF9.IhaVMHlKPIyHQudpOFHrib8QZDswhefOu8J9KRF1f7Q
+
+{
+  "file": 
+}
+###
 
 ###
 POST http://localhost:3000/api/posts/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzczMzY4MDV9.r0Mb43pDVl8vM910vzskt2jRuVJw95QMLtmwDj7-QjU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzgyNDA3NzZ9.9TSU9yWYGEon1AXEbGjWJDGR9TlIgedSf7FhPSTBWw0
 
 {
-  "content": "Hello world",
+  "content": "Miss You 3000",
   "type": 1
 }
 
