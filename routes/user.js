@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get("/", userController.fetchAllUsers);
 router.get("/name/:keyword", userController.fetchUserByName);
+router.get("/info", verifyToken, userController.fetchUserByID);
+
 router.put("/update", verifyToken, userController.updateUserInfo);
 router.post("/verify", userController.verifyAccount);
 router.get("/find", userController.findUserByKeyword);
