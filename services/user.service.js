@@ -334,3 +334,29 @@ export const fetchAllBlockedUsers = async({
         throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
     }
 };
+
+export const fetchUserByID = async(id) => {
+    const user = await User.findOne({
+        where: { id, isDelete: false },
+        include: [{
+            model: Role,
+            attributes: ["id", "roleName"],
+        }, ],
+        attributes: [
+            "id",
+            "username",
+            "email",
+            "firstname",
+            "lastname",
+            "avatar",
+            "phone",
+            "status",
+            "birthday",
+            "gender",
+        ],
+    });
+    if (!user) {
+        throw new ApiError(httpStatus.NOT_FOUND, "user not exist");
+    }
+    return user;
+};

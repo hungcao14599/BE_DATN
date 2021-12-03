@@ -29,6 +29,19 @@ export const fetchUserByName = async(req, res) => {
     }
 };
 
+export const fetchUserByID = async(req, res) => {
+    try {
+        const user = await userService.fetchUserByID(req.user.id);
+        res.json({
+            data: user,
+            status: httpStatus[200],
+            message: "FETCH USERS SUCCESSFULLY",
+        });
+    } catch (error) {
+        throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    }
+};
+
 export const updateUserInfo = async(req, res) => {
     try {
         const user = await userService.updateUserInfo(req.user.id, req.body);
