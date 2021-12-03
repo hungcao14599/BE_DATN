@@ -4,10 +4,10 @@ import { verifyToken } from "../middleware/authJWT";
 
 const router = express.Router();
 
-router.get("/", verifyToken, postController.fetchAllPostsOfUser);
+router.get("/", verifyToken, postController.fetchAllPosts);
 router.post("/", verifyToken, postController.addPost);
 router.put("/", verifyToken, postController.updatePost);
-router.get("/post-item/:id", verifyToken, postController.fetchPostByUserID);
+router.get("/post-item/:id", verifyToken, postController.fetchPostByPostID);
 router.put("/delete/:id", verifyToken, postController.deletePost);
 router.get(
     "/user/:username",

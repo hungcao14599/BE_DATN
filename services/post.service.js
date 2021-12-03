@@ -13,9 +13,7 @@ import Sequelize from "sequelize";
 import { multipleUploadFile } from "../middleware/uploadMulter";
 const Op = Sequelize.Op;
 
-export const fetchAllPostsOfUser = async({ size = 10, page = 1 },
-    createdBy
-) => {
+export const fetchAllPosts = async({ size = 10, page = 1 }, createdBy) => {
     const friends = await Friend.findAll({
         where: { userID: createdBy, status: 1 },
     });
@@ -96,7 +94,7 @@ export const fetchAllPostsOfUser = async({ size = 10, page = 1 },
     };
 };
 
-export const fetchPostByUserID = async(createdBy, id) => {
+export const fetchPostByPostID = async(createdBy, id) => {
     try {
         const post = await Post.findOne({
             where: { id, isDelete: false },
@@ -145,7 +143,7 @@ export const addPost = async({ content, type, groupID }, createdBy) => {
             likes: 0,
             comments: 0,
         });
-        const data = await fetchPostByUserID(createdBy, post.id);
+        const data = await fetchPostByPostID(createdBy, post.id);
         return data;
     } catch (error) {
         throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
@@ -232,7 +230,7 @@ export const updatePost = async({ id, content, images }, createdBy) => {
         //     ],
         // });
         // return postItem;
-        const data = await fetchPostByUserID(createdBy, post.id);
+        const data = await fetchPostByPostID(createdBy, post.id);
         return data;
     } catch (error) {
         throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
@@ -255,7 +253,7 @@ export const uploadPostImages = async(req, res) => {
             });
         })
     );
-    return await fetchPostByUserID(req.user.id, req.params.id);
+    return await fetchPostByPostID(req.user.id, req.params.id);
 };
 
 export const deletePost = async({ id }, createdBy) => {

@@ -5,9 +5,9 @@ import { Image, Post, PostComment, PostLike, User } from "../model";
 import { multipleUploadFile } from "../middleware/uploadMulter";
 const fs = require("fs");
 
-export const fetchAllPostsOfUser = async(req, res) => {
+export const fetchAllPosts = async(req, res) => {
     try {
-        const posts = await postService.fetchAllPostsOfUser(req.query, req.user.id);
+        const posts = await postService.fetchAllPosts(req.query, req.user.id);
         res.json({
             data: posts,
             status: httpStatus[200],
@@ -17,7 +17,7 @@ export const fetchAllPostsOfUser = async(req, res) => {
         throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
     }
 };
-export const fetchPostByUserID = async(req, res) => {
+export const fetchPostByPostID = async(req, res) => {
     try {
         const { id } = req.params;
         const post = await Post.findOne({
@@ -74,7 +74,7 @@ export const addPost = async(req, res) => {
             type,
             createdBy: req.user.id,
             groupID: type === 3 ? groupID : null,
-            createdAt: Date.now(),
+            createdAt: Date.now() + 3600000 * 7,
             isDelete: false,
             likes: 0,
             comments: 0,
