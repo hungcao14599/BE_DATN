@@ -40,7 +40,7 @@ export const addCommentToPost = async({ content, postID }, createdBy) => {
             content,
             postID,
             createdBy,
-            createdAt: Date.now(),
+            createdAt: Date.now() + 3600000 * 7,
             isDelete: false,
         });
         await post.update({
@@ -83,7 +83,7 @@ export const updateCommentOfPost = async({ id, content }, updatedBy) => {
             ...comment,
             content,
             updatedBy,
-            updatedAt: Date.now(),
+            updatedAt: Date.now() + 3600000 * 7,
         });
         return comment;
     } catch (error) {

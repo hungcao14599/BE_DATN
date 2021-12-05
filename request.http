@@ -125,9 +125,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozM
 }
 
 ###
-PUT http://localhost:3000/api/posts/delete/57
+PUT http://localhost:3000/api/posts/delete/187
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzczNzkzNzl9.727YCGzOYzwAKNQs1j3MMeSO1aARBPjUbJg1UHhH2Lo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo0NCwidXNlcm5hbWUiOiJIxrBuZyBDYW8iLCJlbWFpbCI6Imh1bmdudjcyMEB3cnUudm4iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM4NjA1MTk5fQ.Il7erozKBbCfQF4cBIrPc7_lpR-5jLo8e9ubrurHoq4
 
 ###
 GET http://localhost:3000/api/posts/user/admin2?size=10&page=1
@@ -138,9 +138,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozM
 #POSTLIKE
 
 ###
-POST http://localhost:3000/api/post-mood/58
+POST http://localhost:3000/api/post-mood/187
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzQ1OTMxOH0.sNGfjt6xlrZWTPsc2JiC2iwX8ii8Y9Rs-Kv2aI-S9gg
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzQ1OTMxOH0.sNGfjt6xlrZWTPsc2JiC2iwX8ii8Y9Rs-Kv2aI-S9gg
 
 
 #POSTCOMMENT

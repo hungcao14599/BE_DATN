@@ -148,7 +148,7 @@ export const verifyAccount = async({ verifyCode, email }) => {
             throw new BaseError(httpStatus[405], "INCORRECT CODE");
         await account.update({
             status: 1,
-            updatedAt: Date.now(),
+            updatedAt: Date.now() + 3600000 * 7,
         });
     } catch (error) {
         throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");

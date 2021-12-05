@@ -112,13 +112,13 @@ export const addFriend = async(userID, friend) => {
             userID,
             friend,
             status: 2,
-            createdAt: Date.now(),
+            createdAt: Date.now() + 3600000 * 7,
         });
         await Friend.create({
             userID: friend,
             friend: userID,
             status: 3,
-            createdAt: Date.now(),
+            createdAt: Date.now() + 3600000 * 7,
         });
     } catch (error) {
         throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
@@ -142,12 +142,12 @@ export const approvalFriend = async(userID, { friend, isApproval }) => {
             await user.update({
                 ...user,
                 status: 1,
-                updatedAt: Date.now(),
+                updatedAt: Date.now() + 3600000 * 7,
             });
             await user_friend.update({
                 ...user,
                 status: 1,
-                updatedAt: Date.now(),
+                updatedAt: Date.now() + 3600000 * 7,
             });
         } else {
             await user.destroy(), await user_friend.destroy();
