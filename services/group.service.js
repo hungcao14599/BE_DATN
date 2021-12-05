@@ -46,7 +46,7 @@ export const addGroup = async(createdBy, { name, description }) => {
             avatar: "",
             createdBy,
             isDelete: false,
-            createdAt: Date.now(),
+            createdAt: Date.now() + 3600000 * 7,
         });
         await GroupMember.create({
             groupID: group.id,
@@ -85,7 +85,7 @@ export const updateInfoGroup = async(updatedBy, { id, name, description }) => {
             name,
             description,
             updatedBy,
-            updatedAt: Date.now(),
+            updatedAt: Date.now() + 3600000 * 7,
         });
         return data;
     } catch (error) {

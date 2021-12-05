@@ -79,7 +79,7 @@ export const verifyAccount = async(req, res) => {
         } else {
             await account.update({
                 status: 1,
-                updatedAt: Date.now(),
+                updatedAt: Date.now() + 3600000 * 7,
             });
 
             return res.json({

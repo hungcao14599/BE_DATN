@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
         if (math.indexOf(file.mimetype) === -1) {
             return callback("Only allow to upload image png, jpg, jpeg or gif", null);
         }
-        callback(null, Date.now() + "-" + file.originalname);
+        callback(null, Date.now() + 3600000 * 7 + "-" + file.originalname);
     },
 });
 
