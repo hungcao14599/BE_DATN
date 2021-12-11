@@ -1,6 +1,7 @@
 import { User, Role, Friend, Image } from "../model";
 import httpStatus from "http-status";
 import Sequelize from "sequelize";
+import { singleUploadFile } from "../middleware/uploadMulter";
 const Op = Sequelize.Op;
 
 const attributes = [
@@ -16,6 +17,7 @@ const attributes = [
   "gender",
   "description",
   "address",
+  "coverImage",
 ];
 export const fetchAllUsers = async ({ page = 1, size = 10, search = "" }) => {
   const where = {
@@ -365,7 +367,95 @@ export const fetchUserByID = async (id) => {
     attributes: attributes,
   });
   if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, "user not exist");
+    throw new BaseError(httpStatus.NOT_FOUND, "INVALID USER");
   }
+  return user;
+};
+
+export const uploadAvatar = async (req, res) => {
+  let { id } = req.user;
+  const user = await User.findOne({
+    where: { id },
+    include: [
+      {
+        model: Role,
+        attributes: ["id", "roleName"],
+      },
+      {
+        model: Friend,
+        limit: 12,
+        offset: 0,
+        distinct: true,
+        include: [
+          {
+            model: User,
+            as: "user_friend",
+            attributes: ["id", "username", "avatar", "description"],
+          },
+        ],
+      },
+    ],
+    attributes: attributes,
+  });
+  if (!user) {
+    throw new BaseError(httpStatus.NOT_FOUND, "INVALID USER");
+  }
+  req.des = "./assets/image/user";
+  await singleUploadFile(req, res);
+  await user.update({
+    avatar: req.file ? req.file.filename : user.avatar,
+  });
+  await Image.create({
+    name: req.file.filename,
+    url: req.file.path,
+    type: 1,
+    createdBy: id,
+    createdAt: Date.now() + 3600000 * 7,
+    isDelete: false,
+  });
+  return user;
+};
+
+export const uploadCoverImage = async (req, res) => {
+  let { id } = req.user;
+  const user = await User.findOne({
+    where: { id },
+    include: [
+      {
+        model: Role,
+        attributes: ["id", "roleName"],
+      },
+      {
+        model: Friend,
+        limit: 12,
+        offset: 0,
+        distinct: true,
+        include: [
+          {
+            model: User,
+            as: "user_friend",
+            attributes: ["id", "username", "avatar", "description"],
+          },
+        ],
+      },
+    ],
+    attributes: attributes,
+  });
+  if (!user) {
+    throw new BaseError(httpStatus.NOT_FOUND, "INVALID USER");
+  }
+  req.des = "./assets/image/user";
+  await singleUploadFile(req, res);
+  await user.update({
+    coverImage: req.file ? req.file.filename : user.coverImage,
+  });
+  await Image.create({
+    name: req.file.filename,
+    url: req.file.path,
+    type: 1,
+    createdBy: id,
+    createdAt: Date.now() + 3600000 * 7,
+    isDelete: false,
+  });
   return user;
 };
