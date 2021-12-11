@@ -10,14 +10,14 @@ router.put("/", verifyToken, postController.updatePost);
 router.get("/post-item/:id", verifyToken, postController.fetchPostByPostID);
 router.put("/delete/:id", verifyToken, postController.deletePost);
 router.get(
-    "/user/:username",
-    verifyToken,
-    postController.fetchAllPostByUserName
+  "/user/:username",
+  verifyToken,
+  postController.fetchAllPostByUserName
 );
 router.get(
-    "/group/:groupID",
-    verifyToken,
-    postController.fetchAllPostByGroupID
+  "/group/:groupID",
+  verifyToken,
+  postController.fetchAllPostByGroupID
 );
 router.get("/image/:image", postController.fetchImageInPost);
 

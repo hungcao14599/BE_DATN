@@ -2,6 +2,7 @@ import * as userService from "../services/user.service";
 import BaseError from "../utils/baseError";
 import httpStatus from "http-status";
 import { User } from "../model";
+const fs = require("fs");
 
 export const fetchAllUsers = async (req, res) => {
   try {
@@ -158,4 +159,30 @@ export const fetchAllBlockedUsers = async (req, res) => {
   } catch (error) {
     throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
   }
+};
+
+export const uploadAvatar = async (req, res) => {
+  const user = await userService.uploadAvatar(req, res);
+  res.json({
+    status: 200,
+    data: user,
+    message: "Avatar Upload Successfully",
+  });
+};
+
+export const uploadCoverImage = async (req, res) => {
+  const user = await userService.uploadCoverImage(req, res);
+  res.json({
+    status: 200,
+    data: user,
+    message: "Cover Image Upload Successfully",
+  });
+};
+
+export const fetchImage = async (req, res) => {
+  const image = req.params.image;
+  fs.readFile(`./assets/image/user/${image}`, (err, data) => {
+    res.writeHead(200, { "Content-Type": "image/jpeg" });
+    res.end(data);
+  });
 };
