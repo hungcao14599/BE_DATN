@@ -82,6 +82,7 @@ export const fetchUserByName = async ({ username }) => {
           limit: 10,
           offset: 0,
           distinct: true,
+          where: { status: 1 },
           include: [
             {
               model: User,

@@ -6,14 +6,14 @@ const router = express.Router();
 
 router.get("/", verifyToken, friendController.fetchAllUserInFriendTable);
 router.get(
-    "/not-friend",
-    verifyToken,
-    friendController.fetchAllNotFriendOfUserByID
+  "/not-friend",
+  verifyToken,
+  friendController.fetchAllNotFriendOfUserByID
 );
 router.get(
-    "/user-friend",
-    verifyToken,
-    friendController.fetchAllFriendOfUserByID
+  "/user-friend",
+  verifyToken,
+  friendController.fetchAllFriendOfUserByID
 );
 router.post("/add/:id", verifyToken, friendController.addFriend);
 router.get("/approval", verifyToken, friendController.fetchAllUserApprovalByID);
