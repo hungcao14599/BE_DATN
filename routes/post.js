@@ -15,7 +15,7 @@ router.get(
   postController.fetchAllPostByUserName
 );
 router.get(
-  "/group/:groupID",
+  "/group-post/:groupID",
   verifyToken,
   postController.fetchAllPostByGroupID
 );

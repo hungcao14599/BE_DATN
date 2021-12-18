@@ -125,8 +125,9 @@ export const register = async (req, res) => {
         email,
         "Notice of account registration",
         `<h2>Successful Refistration!<h2/>
-                <p style="font-weight:500;">Your verification code is: <span style="font-weight:600;">${code}</span></p>
-                <p>Activate the account with the verification code to complete the registration.</p>`
+          <p style="font-weight:500;">Your verification code is: <span style="font-weight:600;">${code}</span></p>
+          <p>Activate the account with the verification code to complete the registration.</p>
+          <p>Visit the account activation link to log in <a href="http://localhost:3006/tlu/login">Active Account</a></p>`
       );
       return res.json({
         data: newUser,
