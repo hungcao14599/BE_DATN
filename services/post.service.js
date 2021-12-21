@@ -94,6 +94,91 @@ export const fetchAllPosts = async ({ size = 10, page = 1 }, createdBy) => {
   };
 };
 
+export const fetchAllPostsInGroup = async (
+  { size = 10, page = 1 },
+  createdBy
+) => {
+  const friends = await Friend.findAll({
+    where: { userID: createdBy, status: 1 },
+  });
+  const listID = [];
+  const listGroupID = [];
+  listID.push(createdBy);
+  await Promise.all(
+    friends.map(async (item) => {
+      listID.push(item.friend);
+    })
+  );
+  const groups = await GroupMember.findAll({ where: { userID: createdBy } });
+  await Promise.all(
+    groups.map(async (item) => {
+      listGroupID.push(item.groupID);
+    })
+  );
+
+  const posts = await Post.findAndCountAll({
+    where: {
+      type: 3,
+      isDelete: false,
+      [Op.or]: [
+        {
+          createdBy: {
+            [Op.in]: listID,
+          },
+          groupID: null,
+        },
+        {
+          groupID: {
+            [Op.in]: listGroupID,
+          },
+        },
+      ],
+    },
+    limit: parseInt(size),
+    offset: size * (page - 1),
+    distinct: true,
+    order: [["createdAt", "desc"]],
+    include: [
+      {
+        model: User,
+        attributes: ["id", "username", "avatar"],
+      },
+      {
+        model: PostComment,
+        as: "comment",
+        attributes: ["id", "content", "createdAt"],
+        include: {
+          model: User,
+          attributes: ["id", "username", "avatar"],
+        },
+      },
+      {
+        model: PostLike,
+        attributes: ["id", "status"],
+        as: "like",
+        where: { createdBy },
+        required: false,
+      },
+      {
+        model: Image,
+        attributes: ["id", "name", "url"],
+      },
+      {
+        model: GroupPage,
+        attributes: ["id", "name"],
+      },
+    ],
+  });
+  return {
+    data: posts.rows,
+    size,
+    length: posts.length,
+    currentPage: page,
+    totalpage: Math.ceil(posts.count / size),
+    totalElements: posts.count,
+  };
+};
+
 export const fetchPostByPostID = async (createdBy, id) => {
   try {
     const post = await Post.findOne({
@@ -189,7 +274,7 @@ export const updatePost = async ({ id, content, images }, createdBy) => {
       ...post,
       content,
       updatedAt: Date.now() + 3600000 * 7,
-      // updatedBy: createdBy,
+      updatedBy: createdBy,
     });
     const imgs = await Image.findAll({
       where: { postID: id },
@@ -203,35 +288,7 @@ export const updatePost = async ({ id, content, images }, createdBy) => {
         }
       })
     );
-    // const postItem = await Post.findOne({
-    //     where: { id },
-    //     include: [{
-    //             model: User,
-    //             attributes: ["id", "username", "avatar"],
-    //         },
-    //         {
-    //             model: PostComment,
-    //             as: "comment",
-    //             attributes: ["id", "content"],
-    //             include: {
-    //                 model: User,
-    //                 attributes: ["id", "username", "avatar"],
-    //             },
-    //         },
-    //         {
-    //             model: PostLike,
-    //             attributes: ["id", "status"],
-    //             as: "like",
-    //             where: { createdBy },
-    //             required: false,
-    //         },
-    //         {
-    //             model: Image,
-    //             attributes: ["id", "name", "url"],
-    //         },
-    //     ],
-    // });
-    // return postItem;
+
     const data = await fetchPostByPostID(createdBy, post.id);
     return data;
   } catch (error) {

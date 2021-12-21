@@ -222,7 +222,7 @@ export const fetchImgByUsername = async ({ username }) => {
     if (!user) throw new BaseError(httpStatus.NOT_FOUND, "INVALID USER");
     const images = await Image.findAll({
       where: { createdBy: user.id, isDelete: false },
-      limit: 9,
+      limit: 20,
     });
     return images;
   } catch (error) {
