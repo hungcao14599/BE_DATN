@@ -1,6 +1,8 @@
 import { Chat, Message, User, MemberChat } from "../model";
 import httpStatus from "http-status";
 import BaseError from "../utils/baseError";
+import Sequelize from "sequelize";
+const Op = Sequelize.Op;
 
 export const fetchAllChats = async () => {
   try {
@@ -31,60 +33,54 @@ export const fetchAllChats = async () => {
   }
 };
 
-export const fetchChatsByUserId = async (userID, { size = 20, page = 1 }) => {
-  try {
-    const members = await MemberChat.findAll({ where: { userID } });
-    console.log(
-      "🚀 ~ file: chat.service.js ~ line 37 ~ fetchChatsByUserId ~ members",
-      members
-    );
-    const list = [];
-    await Promise.all(
-      members.map(async (member) => {
-        list.push(member.chatID);
-      })
-    );
-    console.log(
-      "🚀 ~ file: chat.service.js ~ line 42 ~ fetchChatsByUserId ~ list",
-      list
-    );
-
-    const chats = await Chat.findAndCountAll({
-      where: {
-        id: { [Op.in]: list },
-      },
-      include: [
-        {
-          model: MemberChat,
-          attributes: ["id", "type"],
-          include: {
-            model: User,
-            attributes: ["id", "username", "avatar"],
-          },
+export const fetchChatsByUserId = async (
+  userID,
+  { size = 20, page = 1, keyword = "" }
+) => {
+  const members = await MemberChat.findAll({ where: { userID } });
+  const list = [];
+  await Promise.all(
+    members.map(async (member) => {
+      list.push(member.chatID);
+    })
+  );
+  const chats = await Chat.findAndCountAll({
+    where: {
+      id: { [Op.in]: list },
+    },
+    include: [
+      {
+        model: MemberChat,
+        // where: {
+        //   userID: { [Op.ne]: userID },
+        // },
+        attributes: ["id", "type"],
+        include: {
+          model: User,
           where: {
-            userID: { [Op.ne]: userID },
+            username: {
+              [Op.like]: `%${keyword}%`,
+            },
+            id: {
+              [Op.ne]: userID,
+            },
           },
+          attributes: ["id", "username", "avatar", "firstname", "lastname"],
         },
-      ],
-      limit: parseInt(size),
-      offset: size * (page - 1),
-      distinct: true,
-      attributes: ["id", "name", "image", "type", "createdAt"],
-    });
-    console.log(
-      "🚀 ~ file: chat.service.js ~ line 74 ~ fetchChatsByUserId ~ chats",
-      chats
-    );
+      },
+    ],
+    limit: parseInt(size),
+    offset: size * (page - 1),
+    distinct: true,
+    attributes: ["id", "name", "image", "type", "createdAt"],
+  });
 
-    return {
-      data: chats.rows,
-      size,
-      length: chats.length,
-      currentPage: page,
-      totalpage: Math.ceil(chats.count / size),
-      totalElements: chats.count,
-    };
-  } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
-  }
+  return {
+    data: chats.rows,
+    size,
+    length: chats.length,
+    currentPage: page,
+    totalpage: Math.ceil(chats.count / size),
+    totalElements: chats.count,
+  };
 };
