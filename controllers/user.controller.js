@@ -1,5 +1,5 @@
 import * as userService from "../services/user.service";
-import BaseError from "../utils/baseError";
+import BaseError from "../utils/BaseError";
 import httpStatus from "http-status";
 import { User } from "../model";
 const fs = require("fs");

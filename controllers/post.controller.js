@@ -1,5 +1,5 @@
 import * as postService from "../services/post.service";
-import BaseError from "../utils/baseError";
+import BaseError from "../utils/BaseError";
 import httpStatus from "http-status";
 import { Image, Post, PostComment, PostLike, User } from "../model";
 import { multipleUploadFile } from "../middleware/uploadMulter";

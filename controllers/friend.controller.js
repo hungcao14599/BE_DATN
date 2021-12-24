@@ -1,5 +1,5 @@
 import * as friendService from "../services/friend.service";
-import BaseError from "../utils/baseError";
+import BaseError from "../utils/BaseError";
 import httpStatus from "http-status";
 
 export const fetchAllUserInFriendTable = async (req, res) => {

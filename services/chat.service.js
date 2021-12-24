@@ -1,6 +1,6 @@
 import { Chat, Message, User, MemberChat } from "../model";
 import httpStatus from "http-status";
-import BaseError from "../utils/baseError";
+import BaseError from "../utils/BaseError";
 import Sequelize from "sequelize";
 const Op = Sequelize.Op;
 

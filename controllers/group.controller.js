@@ -1,5 +1,5 @@
 import * as groupService from "../services/group.service";
-import BaseError from "../utils/baseError";
+import BaseError from "../utils/BaseError";
 import httpStatus from "http-status";
 
 export const fetchAllGroups = async (req, res) => {
