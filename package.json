@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "babel-node nodemon ./bin/www --exec"
+        "start": "nodemon ./bin/www --exec babel-node"
     },
     "dependencies": {
         "babel-cli": "^6.26.0",
