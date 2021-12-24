@@ -6,6 +6,8 @@
         "start": "nodemon ./bin/www --exec babel-node"
     },
     "dependencies": {
+        "@babel/core": "^7.16.5",
+        "@babel/node": "^7.16.5",
         "bcrypt": "^5.0.1",
         "cookie-parser": "~1.4.4",
         "cors": "^2.8.5",
@@ -27,8 +29,6 @@
     },
     "devDependencies": {
         "@babel/cli": "^7.16.0",
-        "@babel/core": "^7.16.5",
-        "@babel/node": "^7.16.5",
         "@babel/preset-env": "^7.16.5"
     }
 }
