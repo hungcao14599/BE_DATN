@@ -16,7 +16,7 @@ var messageService = require("../services/message.service");
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || "3000");
+var port = normalizePort(process.env.PORT);
 app.set("port", port);
 
 /**
@@ -26,7 +26,7 @@ app.set("port", port);
 var server = http.createServer(app);
 const io = socketio(server, {
   cors: {
-    origin: "http://localhost:3030",
+    origin: "http://localhost:3006",
   },
 });
 
