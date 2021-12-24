@@ -13,7 +13,7 @@ export const fetchMessageByChatId = async (chatID, { size = 20, page = 1 }) => {
       limit: parseInt(size),
       offset: size * (page - 1),
       distinct: true,
-      attributes: ["id", "message", "createdAt"],
+      attributes: ["id", "messages", "createdAt"],
       order: [["createdAt", "desc"]],
     });
     return {

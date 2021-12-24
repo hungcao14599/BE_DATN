@@ -4,7 +4,11 @@ import { verifyToken } from "../middleware/authJWT";
 
 const router = express.Router();
 
-router.post("/", verifyToken, messageController.createMessage);
-router.get("/message/:id", verifyToken, messageController.fetchMessageByChatId);
+router.post("/", messageController.createMessage);
+router.get(
+  "/content/:id",
+
+  messageController.fetchMessageByChatId
+);
 
 export default router;
