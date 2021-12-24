@@ -1,24 +1,11 @@
-// import catchAsync from "../utils/catchAsync";
 import { generateToken } from "../middleware/authJWT";
 import { Role, User } from "../model";
-import BaseError from "../utils/baseError";
 import bcrypt from "bcrypt";
 import * as mailer from "../middleware/mailer";
 import Sequelize from "sequelize";
 const Op = Sequelize.Op;
 
 export const login = async (req, res) => {
-  // const user = await authService.login(req.body);
-  // // res.cookie("JWT", user.accessToken, {
-  // //     maxAge: 86400000 * 7,
-  // //     httpOnly: true,
-  // // });
-  // res.json({
-  //     tokenType: "Bearer",
-  //     user: user.user,
-  //     accessToken: user.accessToken,
-  // });
-
   const { email, password } = req.body;
 
   try {
@@ -75,16 +62,6 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  // try {
-  //     await authService.register(req.body);
-  //     res.json({
-  //         status: 200,
-  //         message: "SUCCESSFUL REGISTER! PLEASE CHECK GMAIL",
-  //     });
-  // } catch (error) {
-  //     throw new BaseError(500, "INTERNAL SERVER ERROR");
-  // }
-
   try {
     const { username, password, email, firstname, lastname } = req.body;
 
