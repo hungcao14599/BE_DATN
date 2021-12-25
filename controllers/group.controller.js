@@ -3,16 +3,17 @@ import BaseError from "../utils/BaseError";
 import httpStatus from "http-status";
 
 export const fetchAllGroups = async (req, res, next) => {
-  try {
-    const groups = await groupService.fetchAllGroups(req.query);
-    res.json({
-      data: groups,
-      status: httpStatus[200],
-      message: "FETCH ALL GROUPS SUCCESSFULLY",
-    });
-  } catch (error) {
-    next(error);
-  }
+  // try {
+  const groups = await groupService.fetchAllGroups(req.query);
+  res.json({
+    data: groups,
+    status: httpStatus[200],
+    message: "FETCH ALL GROUPS SUCCESSFULLY",
+  });
+  // }
+  // catch (error) {
+  //   next(error);
+  // }
 };
 export const addGroup = async (req, res) => {
   try {
