@@ -2,18 +2,19 @@ import * as groupService from "../services/group.service";
 import BaseError from "../utils/BaseError";
 import httpStatus from "http-status";
 
-export const fetchAllGroups = async (req, res, next) => {
-  // try {
-  const groups = await groupService.fetchAllGroups(req.query);
-  res.json({
-    data: groups,
-    status: httpStatus[200],
-    message: "FETCH ALL GROUPS SUCCESSFULLY",
-  });
-  // }
-  // catch (error) {
-  //   next(error);
-  // }
+export const fetchAllGroups = async (req, res) => {
+  try {
+    const groups = await groupService.fetchAllGroups(req.query);
+    res.json({
+      data: groups,
+      status: httpStatus[200],
+      message: "FETCH ALL GROUPS SUCCESSFULLY",
+    });
+  } catch (error) {
+    // next(error);
+    console.log(error);
+    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+  }
 };
 export const addGroup = async (req, res) => {
   try {
