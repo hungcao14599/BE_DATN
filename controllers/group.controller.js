@@ -2,7 +2,7 @@ import * as groupService from "../services/group.service";
 import BaseError from "../utils/BaseError";
 import httpStatus from "http-status";
 
-export const fetchAllGroups = async (req, res) => {
+export const fetchAllGroups = async (req, res, next) => {
   try {
     const groups = await groupService.fetchAllGroups(req.query);
     res.json({
