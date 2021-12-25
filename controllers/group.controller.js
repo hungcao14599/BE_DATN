@@ -11,7 +11,7 @@ export const fetchAllGroups = async (req, res) => {
       message: "FETCH ALL GROUPS SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    next(error);
   }
 };
 export const addGroup = async (req, res) => {
