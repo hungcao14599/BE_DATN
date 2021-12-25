@@ -4,5 +4,5 @@ module.exports = {
   PASSWORD: "boythach",
   HOST: "127.0.0.1",
   dialect: "mysql",
-  PORT: "3000",
+  PORT: "3306",
 };
