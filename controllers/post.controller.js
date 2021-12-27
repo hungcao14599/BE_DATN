@@ -5,6 +5,22 @@ import { Image, Post, PostComment, PostLike, User } from "../model";
 import { multipleUploadFile } from "../middleware/uploadMulter";
 const fs = require("fs");
 
+export const fetchAllPostsRoleAdmin = async (req, res) => {
+  try {
+    const posts = await postService.fetchAllPostsRoleAdmin(
+      req.query,
+      req.user.id
+    );
+    res.json({
+      data: posts,
+      status: httpStatus[200],
+      message: "FETCH ALL POSTS SUCCESSFULLY",
+    });
+  } catch (error) {
+    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+  }
+};
+
 export const fetchAllPosts = async (req, res) => {
   try {
     const posts = await postService.fetchAllPosts(req.query, req.user.id);

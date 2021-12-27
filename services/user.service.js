@@ -22,7 +22,7 @@ const attributes = [
 export const fetchAllUsers = async ({ page = 1, size = 10, search = "" }) => {
   const where = {
     isDelete: false,
-    status: 1,
+    // status: 1,
   };
   if (search !== "") {
     where = {

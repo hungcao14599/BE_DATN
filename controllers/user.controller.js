@@ -182,7 +182,8 @@ export const uploadCoverImage = async (req, res) => {
 export const fetchImage = async (req, res) => {
   const image = req.params.image;
   fs.readFile(`./assets/image/user/${image}`, (err, data) => {
-    res.writeHead(200, { "Content-Type": "image/jpeg" });
+    // res.writeHead(200, { "Content-Type": "image/jpeg" });
+    res.writeHead(200);
     res.end(data);
   });
 };

@@ -4,7 +4,7 @@ import { verifyToken } from "../middleware/authJWT";
 
 const router = express.Router();
 
-router.get("/", groupController.fetchAllGroups);
+router.get("/", verifyToken, groupController.fetchAllGroups);
 router.post("/", verifyToken, groupController.addGroup);
 router.put("/", verifyToken, groupController.updateInfoGroup);
 router.post("/join-group/:groupID", verifyToken, groupController.userJoinGroup);
