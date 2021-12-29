@@ -1,4 +1,4 @@
-import { User, Friend } from "../model";
+import { User, Friend, Chat, MemberChat } from "../model";
 import httpStatus from "http-status";
 import Sequelize from "sequelize";
 const Op = Sequelize.Op;
@@ -131,6 +131,23 @@ export const addFriend = async (userID, friend) => {
       friend: userID,
       status: 3,
       createdAt: Date.now() + 3600000 * 7,
+    });
+
+    const chatID = Math.floor(Math.random() * 100000000) + 1;
+    await Chat.create({
+      id: chatID,
+      type: 1,
+      createdAt: Date.now() + 3600000 * 7,
+    });
+    await MemberChat.create({
+      chatID: chatID,
+      userID,
+      friend,
+    });
+    await MemberChat.create({
+      chatID: chatID,
+      userID: friend,
+      friend: userID,
     });
   } catch (error) {
     throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
