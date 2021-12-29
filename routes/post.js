@@ -5,6 +5,8 @@ import { verifyToken } from "../middleware/authJWT";
 const router = express.Router();
 
 router.get("/", verifyToken, postController.fetchAllPosts);
+router.get("/admin-role", verifyToken, postController.fetchAllPostsRoleAdmin);
+
 router.get("/group-post", verifyToken, postController.fetchAllPostsInGroup);
 
 router.post("/", verifyToken, postController.addPost);

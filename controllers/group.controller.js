@@ -1,5 +1,5 @@
 import * as groupService from "../services/group.service";
-import BaseError from "../utils/baseError";
+import BaseError from "../utils/BaseError";
 import httpStatus from "http-status";
 
 export const fetchAllGroups = async (req, res) => {
@@ -11,6 +11,8 @@ export const fetchAllGroups = async (req, res) => {
       message: "FETCH ALL GROUPS SUCCESSFULLY",
     });
   } catch (error) {
+    // next(error);
+    console.log(error);
     throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
   }
 };

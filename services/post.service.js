@@ -325,8 +325,8 @@ export const deletePost = async ({ id }, createdBy) => {
       },
     });
     if (!post) throw new BaseError(httpStatus.NOT_FOUND, "INVALID POST");
-    if (post.user.id !== createdBy)
-      throw new BaseError(httpStatus.NOT_FOUND, "INVALID POST");
+    // if (post.user.id !== createdBy)
+    //   throw new BaseError(httpStatus.NOT_FOUND, "INVALID POST");
     await post.update({
       ...post,
       isDelete: true,
@@ -430,6 +430,55 @@ export const fetchAllPostByGroupID = async (
       {
         model: Image,
         attributes: ["id", "name", "url", "type"],
+      },
+    ],
+  });
+  return {
+    data: posts.rows,
+    size,
+    length: posts.length,
+    currentPage: page,
+    totalpage: Math.ceil(posts.count / size),
+    totalElements: posts.count,
+  };
+};
+
+export const fetchAllPostsRoleAdmin = async (
+  { size = 10, page = 1 },
+  createdBy
+) => {
+  const posts = await Post.findAndCountAll({
+    where: {
+      isDelete: false,
+    },
+    limit: parseInt(size),
+    offset: size * (page - 1),
+    distinct: true,
+    order: [["createdAt", "desc"]],
+    include: [
+      {
+        model: User,
+        attributes: ["id", "username", "avatar"],
+      },
+      {
+        model: PostComment,
+        as: "comment",
+        attributes: ["id", "content", "createdAt"],
+        include: {
+          model: User,
+          attributes: ["id", "username", "avatar"],
+        },
+      },
+      {
+        model: PostLike,
+        attributes: ["id", "status"],
+        as: "like",
+        where: { createdBy },
+        required: false,
+      },
+      {
+        model: Image,
+        attributes: ["id", "name", "url"],
       },
     ],
   });

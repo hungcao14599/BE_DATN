@@ -4,38 +4,38 @@ import Sequelize from "sequelize";
 const Op = Sequelize.Op;
 
 export const fetchAllGroups = async ({ keyword = "", size = 10, page = 1 }) => {
-  try {
-    const groups = await GroupPage.findAndCountAll({
-      where: {
-        isDelete: false,
-        name: {
-          [Op.like]: `%${keyword}%`,
-        },
+  // try {
+  const groups = await GroupPage.findAndCountAll({
+    where: {
+      isDelete: false,
+      name: {
+        [Op.like]: `%${keyword}%`,
       },
-      limit: parseInt(size),
-      offset: size * (page - 1),
-      attributes: [
-        "id",
-        "name",
-        "description",
-        "caption",
-        "status",
-        "avatar",
-        "coverImage",
-        "createdAt",
-      ],
-    });
-    return {
-      data: groups.rows,
-      size: parseInt(size),
-      length: groups.length,
-      currentPage: parseInt(page),
-      totalPage: Math.ceil(groups.count / size),
-      totalElements: groups.count,
-    };
-  } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
-  }
+    },
+    limit: parseInt(size),
+    offset: size * (page - 1),
+    attributes: [
+      "id",
+      "name",
+      "description",
+      "caption",
+      "status",
+      "avatar",
+      "coverImage",
+      "createdAt",
+    ],
+  });
+  return {
+    data: groups.rows,
+    size: parseInt(size),
+    length: groups.length,
+    currentPage: parseInt(page),
+    totalPage: Math.ceil(groups.count / size),
+    totalElements: groups.count,
+  };
+  // } catch (error) {
+  //   throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+  // }
 };
 
 export const addGroup = async (createdBy, { name, description, caption }) => {

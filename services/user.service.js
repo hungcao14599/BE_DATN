@@ -22,7 +22,7 @@ const attributes = [
 export const fetchAllUsers = async ({ page = 1, size = 10, search = "" }) => {
   const where = {
     isDelete: false,
-    status: 1,
+    // status: 1,
   };
   if (search !== "") {
     where = {
@@ -222,7 +222,7 @@ export const fetchImgByUsername = async ({ username }) => {
     if (!user) throw new BaseError(httpStatus.NOT_FOUND, "INVALID USER");
     const images = await Image.findAll({
       where: { createdBy: user.id, isDelete: false },
-      limit: 20,
+      limit: 9,
     });
     return images;
   } catch (error) {

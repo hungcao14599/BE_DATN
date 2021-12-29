@@ -1,6 +1,6 @@
 import { Message, User } from "../model";
 import httpStatus from "http-status";
-import BaseError from "../utils/baseError";
+import BaseError from "../utils/BaseError";
 
 export const fetchMessageByChatId = async (chatID, { size = 20, page = 1 }) => {
   try {
@@ -13,7 +13,7 @@ export const fetchMessageByChatId = async (chatID, { size = 20, page = 1 }) => {
       limit: parseInt(size),
       offset: size * (page - 1),
       distinct: true,
-      attributes: ["id", "messages", "createdAt"],
+      attributes: ["id", "message", "createdAt"],
       order: [["createdAt", "desc"]],
     });
     return {

@@ -1,5 +1,5 @@
 import * as userService from "../services/user.service";
-import BaseError from "../utils/baseError";
+import BaseError from "../utils/BaseError";
 import httpStatus from "http-status";
 import { User } from "../model";
 const fs = require("fs");
@@ -182,7 +182,8 @@ export const uploadCoverImage = async (req, res) => {
 export const fetchImage = async (req, res) => {
   const image = req.params.image;
   fs.readFile(`./assets/image/user/${image}`, (err, data) => {
-    res.writeHead(200, { "Content-Type": "image/jpeg" });
+    // res.writeHead(200, { "Content-Type": "image/jpeg" });
+    res.writeHead(200);
     res.end(data);
   });
 };

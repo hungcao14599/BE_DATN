@@ -1,5 +1,5 @@
 import * as messageService from "../services/message.service";
-import BaseError from "../utils/baseError";
+import BaseError from "../utils/BaseError";
 import httpStatus from "http-status";
 
 export const fetchMessageByChatId = async (req, res) => {
