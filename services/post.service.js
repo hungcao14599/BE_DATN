@@ -325,8 +325,8 @@ export const deletePost = async ({ id }, createdBy) => {
       },
     });
     if (!post) throw new BaseError(httpStatus.NOT_FOUND, "INVALID POST");
-    if (post.user.id !== createdBy)
-      throw new BaseError(httpStatus.NOT_FOUND, "INVALID POST");
+    // if (post.user.id !== createdBy)
+    //   throw new BaseError(httpStatus.NOT_FOUND, "INVALID POST");
     await post.update({
       ...post,
       isDelete: true,

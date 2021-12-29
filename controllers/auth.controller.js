@@ -91,7 +91,7 @@ export const register = async (req, res) => {
         email,
         firstname,
         lastname,
-        status: 0,
+        // status: 0,
         verifyCode: code,
         createdAt: Date.now() + 3600000 * 7,
         updatedAt: Date.now() + 3600000 * 7,
