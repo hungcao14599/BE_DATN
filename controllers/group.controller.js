@@ -163,3 +163,16 @@ export const fetchMemberJoinGroup = async (req, res) => {
     throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
   }
 };
+
+export const fetchImgByGroupId = async (req, res) => {
+  try {
+    const images = await groupService.fetchImgByGroupId(req.params);
+    res.json({
+      data: images,
+      status: httpStatus[200],
+      message: "FETCH IMAGES IN GROUP",
+    });
+  } catch (error) {
+    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+  }
+};

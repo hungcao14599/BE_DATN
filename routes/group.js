@@ -29,5 +29,6 @@ router.get(
 );
 router.get("/group-item/:id", groupController.fetchGroupById);
 router.get("/member-join/:id", groupController.fetchMemberJoinGroup);
+router.get("/files/:groupID", groupController.fetchImgByGroupId);
 
 export default router;

@@ -4,6 +4,19 @@ import httpStatus from "http-status";
 import { User } from "../model";
 const fs = require("fs");
 
+export const fetchNumOfUserByMonth = async (req, res) => {
+  try {
+    const data = await userService.fetchNumOfUserByMonth();
+    res.json({
+      data: data,
+      status: httpStatus[200],
+      message: "FETCH NUM OF USERS BY MONTHS SUCCESSFULLY",
+    });
+  } catch (error) {
+    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+  }
+};
+
 export const fetchAllUsers = async (req, res) => {
   try {
     const users = await userService.fetchAllUsers(req.body);
