@@ -5,6 +5,8 @@ import { verifyToken, verifyTokenRole } from "../middleware/authJWT";
 const router = express.Router();
 
 router.get("/", userController.fetchAllUsers);
+router.get("/num-of-users", userController.fetchNumOfUserByMonth);
+
 router.get("/name/:username", userController.fetchUserByName);
 router.get("/info", verifyToken, userController.fetchUserByID);
 router.put("/avatar", verifyToken, userController.uploadAvatar);

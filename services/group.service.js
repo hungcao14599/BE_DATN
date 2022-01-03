@@ -1,4 +1,4 @@
-import { GroupPage, GroupMember, User, Image } from "../model";
+import { GroupPage, GroupMember, User, Image, Post } from "../model";
 import httpStatus from "http-status";
 import Sequelize from "sequelize";
 const Op = Sequelize.Op;
@@ -359,4 +359,40 @@ export const fetchMemberJoinGroup = async (
     totalpage: Math.ceil(members.count / size),
     totalElements: members.count,
   };
+};
+
+export const fetchImgByGroupId = async ({ groupID }) => {
+  console.log(
+    "🚀 ~ file: group.service.js ~ line 365 ~ fetchImgByGroupId ~ groupID",
+    groupID
+  );
+
+  const group = await GroupPage.findOne({ where: { id: groupID } });
+
+  if (!group) throw new BaseError(httpStatus.NOT_FOUND, "INVALID GROUP");
+  const posts = await Post.findAll({ where: { groupID } });
+  console.log(
+    "🚀 ~ file: group.service.js ~ line 374 ~ fetchImgByGroupId ~ post",
+    posts
+  );
+  const listPostID = [];
+  await Promise.all(
+    posts.map(async (item) => {
+      listPostID.push(item.id);
+    })
+  );
+  console.log(
+    "🚀 ~ file: group.service.js ~ line 382 ~ posts.map ~ listPostID",
+    listPostID
+  );
+
+  const images = await Image.findAll({
+    where: {
+      postID: {
+        [Op.in]: listPostID,
+      },
+      isDelete: false,
+    },
+  });
+  return images;
 };

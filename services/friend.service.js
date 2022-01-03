@@ -199,7 +199,14 @@ export const fetchAllUserApprovalByID = async (
         {
           model: User,
           as: "user_friend",
-          attributes: ["id", "username", "avatar", "description"],
+          attributes: [
+            "id",
+            "username",
+            "avatar",
+            "description",
+            "firstname",
+            "lastname",
+          ],
           where: {
             username: {
               [Op.like]: `%${keyword}%`,
