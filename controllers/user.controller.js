@@ -13,7 +13,9 @@ export const fetchNumOfUserByMonth = async (req, res) => {
       message: "FETCH NUM OF USERS BY MONTHS SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+  console.log("🚀 ~ fetchNumOfUserByMonth ~ error:", error)
+
+    // throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
   }
 };
 

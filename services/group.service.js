@@ -362,30 +362,15 @@ export const fetchMemberJoinGroup = async (
 };
 
 export const fetchImgByGroupId = async ({ groupID }) => {
-  console.log(
-    "🚀 ~ file: group.service.js ~ line 365 ~ fetchImgByGroupId ~ groupID",
-    groupID
-  );
-
   const group = await GroupPage.findOne({ where: { id: groupID } });
-
-  if (!group) throw new BaseError(httpStatus.NOT_FOUND, "INVALID GROUP");
+  if (!group) return { error: "INVALID GROUP" };
   const posts = await Post.findAll({ where: { groupID } });
-  console.log(
-    "🚀 ~ file: group.service.js ~ line 374 ~ fetchImgByGroupId ~ post",
-    posts
-  );
   const listPostID = [];
   await Promise.all(
     posts.map(async (item) => {
       listPostID.push(item.id);
     })
   );
-  console.log(
-    "🚀 ~ file: group.service.js ~ line 382 ~ posts.map ~ listPostID",
-    listPostID
-  );
-
   const images = await Image.findAll({
     where: {
       postID: {

@@ -10,6 +10,7 @@ export const sequelize = new Sequelize(
     host: dbConfig.HOST,
     dialect: dbConfig.dialect,
     operatorsAliases: 0,
+    port: dbConfig.PORT,
     pool: {
       max: 5,
       min: 0,
@@ -19,5 +20,9 @@ export const sequelize = new Sequelize(
     logging: console.log,
   }
 );
+
+sequelize.authenticate()
+  .then(() => console.log("✅ Kết nối thành công"))
+  .catch(err => console.error("❌ Kết nối thất bại:", err));
 
 export const Op = Sequelize.Op;

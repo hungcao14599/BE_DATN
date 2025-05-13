@@ -479,12 +479,12 @@ export const uploadCoverImage = async (req, res) => {
 export const fetchNumOfUserByMonth = async () => {
   const user = await User.findAll({
     where: { isDelete: false },
-    order: [["createdAt", "asc"]],
-    group: [Sequelize.fn("month", Sequelize.col("created_at"))],
     attributes: [
       [Sequelize.fn("month", Sequelize.col("created_at")), "month"],
       [Sequelize.fn("count", Sequelize.col("created_at")), "value"],
     ],
+    group: [Sequelize.fn("month", Sequelize.col("created_at"))],
+    order: [[Sequelize.fn("month", Sequelize.col("created_at"))]],
   });
   if (!user) {
     throw new BaseError(httpStatus.NOT_FOUND, "INVALID USER");

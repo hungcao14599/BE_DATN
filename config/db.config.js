@@ -1,8 +1,8 @@
 module.exports = {
-  DB_NAME: "db_da",
+  DB_NAME: "datn",
   DB_USERNAME: "root",
-  PASSWORD: "boythach",
-  HOST: "127.0.0.1",
+  PASSWORD: "123456",
+  HOST: "localhost",
   dialect: "mysql",
-  PORT: "3306",
+  PORT: "5435",
 };
