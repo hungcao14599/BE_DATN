@@ -1,8 +1,8 @@
 module.exports = {
-  DB_NAME: "datn",
+  DB_NAME: "railway",
   DB_USERNAME: "root",
-  PASSWORD: "123456",
-  HOST: "localhost",
+  PASSWORD: "gNptgiYpdHNFGwzEojdTVbRPgeUQrhkc",
+  HOST: "yamanote.proxy.rlwy.net",
   dialect: "mysql",
-  PORT: "5435",
+  PORT: "47014",
 };
