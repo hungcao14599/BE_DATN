@@ -46,7 +46,7 @@ export const updateCommentOfPost = async (req, res) => {
       message: "UPDATE COMMENT OF POST SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    // throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
   }
 };
 

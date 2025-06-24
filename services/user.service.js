@@ -19,7 +19,7 @@ const attributes = [
   "address",
   "coverImage",
 ];
-export const fetchAllUsers = async ({ page = 1, size = 10, search = "" }) => {
+export const fetchAllUsers = async ({ page = 1, size = 20, search = "" }) => {
   const where = {
     isDelete: false,
     // status: 1,
@@ -50,7 +50,22 @@ export const fetchAllUsers = async ({ page = 1, size = 10, search = "" }) => {
         },
       ],
       distinct: true,
-      attributes: attributes,
+      attributes: [
+        "id",
+        "username",
+        "email",
+        "firstname",
+        "lastname",
+        "avatar",
+        "phone",
+        "status",
+        "birthday",
+        "gender",
+        "description",
+        "address",
+        "coverImage",
+        "createdAt",
+      ],
     });
     return {
       data: users.rows,
@@ -458,5 +473,21 @@ export const uploadCoverImage = async (req, res) => {
     createdAt: Date.now() + 3600000 * 7,
     isDelete: false,
   });
+  return user;
+};
+
+export const fetchNumOfUserByMonth = async () => {
+  const user = await User.findAll({
+    where: { isDelete: false },
+    attributes: [
+      [Sequelize.fn("month", Sequelize.col("created_at")), "month"],
+      [Sequelize.fn("count", Sequelize.col("created_at")), "value"],
+    ],
+    group: [Sequelize.fn("month", Sequelize.col("created_at"))],
+    order: [[Sequelize.fn("month", Sequelize.col("created_at"))]],
+  });
+  if (!user) {
+    throw new BaseError(httpStatus.NOT_FOUND, "INVALID USER");
+  }
   return user;
 };
