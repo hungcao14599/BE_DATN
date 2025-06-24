@@ -2,7 +2,7 @@ module.exports = {
   DB_NAME: "datn",
   DB_USERNAME: "root",
   PASSWORD: "123456",
-  HOST: "10.10.52.141",
+  HOST: "localhost",
   dialect: "mysql",
   PORT: "5435",
 };
