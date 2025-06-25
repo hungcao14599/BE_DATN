@@ -1,14 +1,6 @@
 {
   "version": 2,
-  "functions": {
-    "api/index.js": {
-      "includeFiles": "node_modules/mysql2/**"
-    }
-  },
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "api/index.js"
-    }
+    { "src": "/(.*)", "dest": "api/index.js" }
   ]
 }
