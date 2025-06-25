@@ -30,6 +30,11 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+// ✅ Redirect "/" to "/api-docs"
+app.get("/", (req, res) => {
+  res.redirect("/api-docs");
+});
+
 app.use("/", indexRouter);
 
 app.use(
