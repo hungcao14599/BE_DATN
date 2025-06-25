@@ -20,4 +20,5 @@ app.get("/", (req, res) => {
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-module.exports.handler = serverless(app);
+// ❗ Xuất default như Vercel yêu cầu
+module.exports = serverless(app);
