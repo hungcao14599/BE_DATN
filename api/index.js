@@ -13,6 +13,11 @@ app.get("/hello", (req, res) => {
   res.json({ message: "Hello from Express on Vercel!" });
 });
 
+app.get("/", (req, res) => {
+  console.log("API gọi thành công");
+  res.json({ message: "Hello from API" });
+});
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 module.exports.handler = serverless(app);
