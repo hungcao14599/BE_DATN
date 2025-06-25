@@ -9,6 +9,7 @@ export const sequelize = new Sequelize(
   {
     host: dbConfig.HOST,
     dialect: dbConfig.dialect,
+    dialectModule: require('mysql2'),
     operatorsAliases: 0,
     port: dbConfig.PORT,
     pool: {
