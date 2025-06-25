@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static("assets"));
 
 const corsOptions = {
-  origin: "http://localhost:3006",
+  origin: "*", // hoặc: [ "https://be-datn-68xn.onrender.com" ]
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
