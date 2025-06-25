@@ -9,7 +9,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000", // phải đúng scheme và port
+        url: "/", // ✅ để tự động dùng domain hiện tại
       },
     ],
     components: {
@@ -17,7 +17,7 @@ const options = {
         bearerAuth: {
           type: "http",
           scheme: "bearer",
-          bearerFormat: "JWT", // optional
+          bearerFormat: "JWT",
         },
       },
     },
@@ -27,7 +27,7 @@ const options = {
       },
     ],
   },
-  apis: ["./routes/*.js"], // đường dẫn đến các file chứa swagger doc
+  apis: ["./routes/*.js"],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
