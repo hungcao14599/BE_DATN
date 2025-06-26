@@ -70,7 +70,10 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
+  res.status(err.statusCode || 500).json({
+    message: err.message || "INTERNAL SERVER ERROR",
+    error: process.env.NODE_ENV === "development" ? err.stack : undefined
+  });
   res.render("error", { error: "Something went wrong" }); // ✅ Đúng
 });
 
