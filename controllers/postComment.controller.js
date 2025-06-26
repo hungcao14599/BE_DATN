@@ -14,7 +14,11 @@ export const fetchCommentByPost = async (req, res) => {
       message: "FETCH POST COMMENT SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -30,7 +34,11 @@ export const addCommentToPost = async (req, res) => {
       message: "ADD COMMENT TO POST SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -46,7 +54,11 @@ export const updateCommentOfPost = async (req, res) => {
       message: "UPDATE COMMENT OF POST SUCCESSFULLY",
     });
   } catch (error) {
-    // throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -62,6 +74,10 @@ export const removeCommentOfPost = async (req, res) => {
       message: "DELETE COMMENT OF POST SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };

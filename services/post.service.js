@@ -213,7 +213,11 @@ export const fetchPostByPostID = async (createdBy, id) => {
     if (!post) throw new BaseError(httpStatus.NOT_FOUND, "INVALID POST");
     return post;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -232,7 +236,11 @@ export const addPost = async ({ content, type, groupID }, createdBy) => {
     const data = await fetchPostByPostID(createdBy, post.id);
     return data;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -292,7 +300,11 @@ export const updatePost = async ({ id, content, images }, createdBy) => {
     const data = await fetchPostByPostID(createdBy, post.id);
     return data;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -333,7 +345,11 @@ export const deletePost = async ({ id }, createdBy) => {
     });
     return post;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 

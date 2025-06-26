@@ -20,7 +20,11 @@ export const fetchAllUserInFriendTable = async () => {
     });
     return allFriends;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -63,7 +67,11 @@ export const fetchAllFriendOfUserByID = async (
       totalElements: friends.count,
     };
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -112,7 +120,11 @@ export const fetchAllNotFriendOfUserByID = async (
       totalElements: users.count,
     };
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -150,7 +162,11 @@ export const addFriend = async (userID, friend) => {
       friend: userID,
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -182,7 +198,11 @@ export const approvalFriend = async (userID, { friend, isApproval }) => {
       await user.destroy(), await user_friend.destroy();
     }
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -229,6 +249,10 @@ export const fetchAllUserApprovalByID = async (
       totalElements: friends.count,
     };
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };

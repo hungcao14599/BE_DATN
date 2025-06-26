@@ -11,6 +11,10 @@ export const handlePostMoods = async (req, res) => {
       message: "HANDLE POST MOOD SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };

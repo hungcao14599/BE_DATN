@@ -14,7 +14,11 @@ export const fetchMessageByChatId = async (req, res) => {
       message: "FETCH ALL MESSAGE SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -27,6 +31,10 @@ export const createMessage = async (req, res) => {
       message: "CREATE MESSAGE SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };

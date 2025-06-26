@@ -76,7 +76,11 @@ export const fetchAllUsers = async ({ page = 1, size = 20, search = "" }) => {
       totalElements: users.count,
     };
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -114,7 +118,11 @@ export const fetchUserByName = async ({ username }) => {
     }
     return user;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -158,7 +166,11 @@ export const updateUserInfo = async (
     });
     return user;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -175,7 +187,11 @@ export const verifyAccount = async ({ verifyCode, email }) => {
       updatedAt: Date.now() + 3600000 * 7,
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -227,7 +243,11 @@ export const findUserByKeyword = async ({
       totalElements: users.count,
     };
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -241,7 +261,11 @@ export const fetchImgByUsername = async ({ username }) => {
     });
     return images;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -280,7 +304,11 @@ export const setBlockUser = async (id) => {
     });
     return user;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -320,7 +348,11 @@ export const setUnBlockUser = async (id) => {
     });
     return user;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -367,7 +399,11 @@ export const fetchAllBlockedUsers = async ({
       totalElements: users.count,
     };
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 

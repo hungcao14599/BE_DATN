@@ -13,9 +13,11 @@ export const fetchNumOfUserByMonth = async (req, res) => {
       message: "FETCH NUM OF USERS BY MONTHS SUCCESSFULLY",
     });
   } catch (error) {
-  console.log("🚀 ~ fetchNumOfUserByMonth ~ error:", error)
-
-    // throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -28,7 +30,11 @@ export const fetchAllUsers = async (req, res) => {
       message: "FETCH ALL USERS SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -41,7 +47,11 @@ export const fetchUserByName = async (req, res) => {
       message: "FETCH USERS SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -54,7 +64,11 @@ export const fetchUserByID = async (req, res) => {
       message: "FETCH USERS SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -67,21 +81,29 @@ export const updateUserInfo = async (req, res) => {
       message: "Update user successfully",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
 export const verifyAccount = async (req, res) => {
-  // try {
-  //     const account = await userService.verifyAccount(req.body);
-  //     res.json({
-  //         data: account,
-  //         status: httpStatus[200],
-  //         message: "ACTIVATED ACCOUNT SUCCESSFULLY",
-  //     });
-  // } catch (error) {
-  //     throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
-  // }
+  try {
+    const account = await userService.verifyAccount(req.body);
+    res.json({
+      data: account,
+      status: httpStatus[200],
+      message: "ACTIVATED ACCOUNT SUCCESSFULLY",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
+  }
 
   try {
     const { email, verifyCode } = req.body;
@@ -120,7 +142,11 @@ export const findUserByKeyword = async (req, res) => {
       message: "FETCH USERS SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -133,7 +159,11 @@ export const fetchImgByUsername = async (req, res) => {
       message: "FETCH IMAGES SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -146,7 +176,11 @@ export const setBlockUser = async (req, res) => {
       message: "BLOCKED USER SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -159,7 +193,11 @@ export const setUnBlockUser = async (req, res) => {
       message: "UNBLOCKED USER SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -172,7 +210,11 @@ export const fetchAllBlockedUsers = async (req, res) => {
       message: "FETCH ALL BLOCKED USER SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 

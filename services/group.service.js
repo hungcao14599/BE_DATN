@@ -34,7 +34,11 @@ export const fetchAllGroups = async ({ keyword = "", size = 10, page = 1 }) => {
     totalElements: groups.count,
   };
   // } catch (error) {
-  //   throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+  //   return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   // }
 };
 
@@ -58,7 +62,11 @@ export const addGroup = async (createdBy, { name, description, caption }) => {
     });
     return group;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -92,7 +100,11 @@ export const updateInfoGroup = async (updatedBy, { id, name, description }) => {
     });
     return data;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -108,7 +120,11 @@ export const userJoinGroup = async (userID, groupID) => {
     });
     return member;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -134,7 +150,11 @@ export const groupAdminApprovalUserJoinGroup = async (
       await checkMember.destroy();
     }
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -176,7 +196,11 @@ export const fetchMemberInGroup = async (
       totalElements: members.count,
     };
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -211,7 +235,11 @@ export const fetchUserJoinGroup = async (
       totalElements: members.count,
     };
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -257,7 +285,11 @@ export const fetchGroupsOfUser = async (
       totalElements: groupInfo.count,
     };
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -303,7 +335,11 @@ export const fetchOtherGroupsOfUser = async (
       totalElements: groupOtherInfo.count,
     };
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 
@@ -329,7 +365,11 @@ export const fetchGroupById = async ({ id }) => {
     if (!group) throw new BaseError(httpStatus[404], "INVALID GROUP");
     return group;
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+    status: httpStatus[500],
+    message: "INTERNAL SERVER ERROR",
+    error: error.message || error, // optional, giúp debug
+  });
   }
 };
 

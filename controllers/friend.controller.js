@@ -11,7 +11,11 @@ export const fetchAllUserInFriendTable = async (req, res) => {
       message: "FETCH ALL USER IN FRIEND TABLE SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -27,7 +31,11 @@ export const fetchAllFriendOfUserByID = async (req, res) => {
       message: "FETCH ALL FRIEND OF USER BY ID SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 export const addFriend = async (req, res) => {
@@ -39,7 +47,11 @@ export const addFriend = async (req, res) => {
       isFriend: true,
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 export const approvalFriend = async (req, res) => {
@@ -50,7 +62,11 @@ export const approvalFriend = async (req, res) => {
       message: "HANDLE APPROVAL FRIEND SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -66,7 +82,11 @@ export const fetchAllNotFriendOfUserByID = async (req, res) => {
       message: "FETCH ALL NOT FRIEND OF USER BY ID SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -82,6 +102,10 @@ export const fetchAllUserApprovalByID = async (req, res) => {
       message: "FETCH ALL APPROVAL FRIEND OF USER BY ID SUCCESSFULLY",
     });
   } catch (error) {
-    throw new BaseError(httpStatus[500], "INTERNAL SERVER ERROR");
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
