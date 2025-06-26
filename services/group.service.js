@@ -4,42 +4,42 @@ import Sequelize from "sequelize";
 const Op = Sequelize.Op;
 
 export const fetchAllGroups = async ({ keyword = "", size = 10, page = 1 }) => {
-  // try {
-  const groups = await GroupPage.findAndCountAll({
-    where: {
-      isDelete: false,
-      name: {
-        [Op.like]: `%${keyword}%`,
+  try {
+    const groups = await GroupPage.findAndCountAll({
+      where: {
+        isDelete: false,
+        name: {
+          [Op.like]: `%${keyword}%`,
+        },
       },
-    },
-    limit: parseInt(size),
-    offset: size * (page - 1),
-    attributes: [
-      "id",
-      "name",
-      "description",
-      "caption",
-      "status",
-      "avatar",
-      "coverImage",
-      "createdAt",
-    ],
-  });
-  return {
-    data: groups.rows,
-    size: parseInt(size),
-    length: groups.length,
-    currentPage: parseInt(page),
-    totalPage: Math.ceil(groups.count / size),
-    totalElements: groups.count,
-  };
-  // } catch (error) {
-  //   return res.status(500).json({
-    status: httpStatus[500],
-    message: "INTERNAL SERVER ERROR",
-    error: error.message || error, // optional, giúp debug
-  });
-  // }
+      limit: parseInt(size),
+      offset: size * (page - 1),
+      attributes: [
+        "id",
+        "name",
+        "description",
+        "caption",
+        "status",
+        "avatar",
+        "coverImage",
+        "createdAt",
+      ],
+    });
+    return {
+      data: groups.rows,
+      size: parseInt(size),
+      length: groups.length,
+      currentPage: parseInt(page),
+      totalPage: Math.ceil(groups.count / size),
+      totalElements: groups.count,
+    };
+  } catch (error) {
+    return res.status(500).json({
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
+  }
 };
 
 export const addGroup = async (createdBy, { name, description, caption }) => {
@@ -63,10 +63,10 @@ export const addGroup = async (createdBy, { name, description, caption }) => {
     return group;
   } catch (error) {
     return res.status(500).json({
-    status: httpStatus[500],
-    message: "INTERNAL SERVER ERROR",
-    error: error.message || error, // optional, giúp debug
-  });
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -101,10 +101,10 @@ export const updateInfoGroup = async (updatedBy, { id, name, description }) => {
     return data;
   } catch (error) {
     return res.status(500).json({
-    status: httpStatus[500],
-    message: "INTERNAL SERVER ERROR",
-    error: error.message || error, // optional, giúp debug
-  });
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -121,10 +121,10 @@ export const userJoinGroup = async (userID, groupID) => {
     return member;
   } catch (error) {
     return res.status(500).json({
-    status: httpStatus[500],
-    message: "INTERNAL SERVER ERROR",
-    error: error.message || error, // optional, giúp debug
-  });
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -151,10 +151,10 @@ export const groupAdminApprovalUserJoinGroup = async (
     }
   } catch (error) {
     return res.status(500).json({
-    status: httpStatus[500],
-    message: "INTERNAL SERVER ERROR",
-    error: error.message || error, // optional, giúp debug
-  });
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -197,10 +197,10 @@ export const fetchMemberInGroup = async (
     };
   } catch (error) {
     return res.status(500).json({
-    status: httpStatus[500],
-    message: "INTERNAL SERVER ERROR",
-    error: error.message || error, // optional, giúp debug
-  });
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -236,10 +236,10 @@ export const fetchUserJoinGroup = async (
     };
   } catch (error) {
     return res.status(500).json({
-    status: httpStatus[500],
-    message: "INTERNAL SERVER ERROR",
-    error: error.message || error, // optional, giúp debug
-  });
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -286,10 +286,10 @@ export const fetchGroupsOfUser = async (
     };
   } catch (error) {
     return res.status(500).json({
-    status: httpStatus[500],
-    message: "INTERNAL SERVER ERROR",
-    error: error.message || error, // optional, giúp debug
-  });
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -336,10 +336,10 @@ export const fetchOtherGroupsOfUser = async (
     };
   } catch (error) {
     return res.status(500).json({
-    status: httpStatus[500],
-    message: "INTERNAL SERVER ERROR",
-    error: error.message || error, // optional, giúp debug
-  });
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
@@ -366,10 +366,10 @@ export const fetchGroupById = async ({ id }) => {
     return group;
   } catch (error) {
     return res.status(500).json({
-    status: httpStatus[500],
-    message: "INTERNAL SERVER ERROR",
-    error: error.message || error, // optional, giúp debug
-  });
+      status: httpStatus[500],
+      message: "INTERNAL SERVER ERROR",
+      error: error.message || error, // optional, giúp debug
+    });
   }
 };
 
