@@ -27,6 +27,7 @@ const corsOptions = {
     "http://localhost:3000/",
     "https://be-datn-68xn.onrender.com",
     "https://fe-datn-zd1y.onrender.com",
+    "https://fe-datn-two.vercel.app",
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
