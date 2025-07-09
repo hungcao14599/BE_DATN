@@ -3,24 +3,33 @@ name: Deploy API to VPS
 on:
   push:
     branches:
-      - master   # hoặc branch bạn muốn CI/CD theo dõi
+      - master
 
 jobs:
   deploy:
+    name: 🚀 Deploy to VPS
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: 📥 Checkout source code
         uses: actions/checkout@v3
 
-      - name: Deploy via SSH
+      - name: 🚀 Deploy via SSH
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
+          port: 22
           script: |
-            cd /root/phenikaaX/BE_DATN   # Thư mục chứa API của bạn
+            echo "🔁 Pulling latest code..."
+            cd /root/phenikaaX/BE_DATN
             git pull origin master
+
+            echo "📦 Installing dependencies..."
             npm install
+
+            echo "♻️ Restarting app with PM2..."
             pm2 restart BE_DATN
+
+            echo "✅ Deployment completed!"

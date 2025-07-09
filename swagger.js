@@ -4,7 +4,7 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "API Đồ án tốt nghiệp Mạng Xã Hội Đại Học Thuỷ Lợi 4.0",
+      title: "API Đồ án tốt nghiệp Mạng Xã Hội - Đại Học Thuỷ Lợi 4.0",
       version: "1.0.0",
     },
     servers: [
