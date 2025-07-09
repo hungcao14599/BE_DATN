@@ -1,0 +1,26 @@
+name: Deploy API to VPS
+
+on:
+  push:
+    branches:
+      - master   # hoặc branch bạn muốn CI/CD theo dõi
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /root/phenikaaX/w2w-movies   # Thư mục chứa API của bạn
+            git pull origin master
+            npm install
+            pm2 restart w2w-movies
