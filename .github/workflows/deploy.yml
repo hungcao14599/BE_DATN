@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /root/phenikaaX/w2w-movies   # Thư mục chứa API của bạn
+            cd /root/phenikaaX/BE_DATN   # Thư mục chứa API của bạn
             git pull origin master
             npm install
-            pm2 restart w2w-movies
+            pm2 restart BE_DATN
