@@ -60,7 +60,6 @@ io.on("connect", (socket) => {
 
 // server.listen(port);
 server.listen(port, '0.0.0.0'); // 👈 Sửa tại đây!
-server.on('listening', onListening);
 server.on("error", onError);
 server.on("listening", onListening);
 

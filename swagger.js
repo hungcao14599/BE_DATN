@@ -5,7 +5,7 @@ const options = {
     openapi: "3.0.0",
     info: {
       title: "API Đồ án tốt nghiệp Mạng Xã Hội - Đại Học Thuỷ Lợi 4.0",
-      version: "2.0.0",
+      version: "2.1.0",
     },
     servers: [
       {
