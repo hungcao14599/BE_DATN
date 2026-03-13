@@ -133,13 +133,10 @@ build:
 
 # Deploy to staging
 deploy_staging:
-  image: alpine:latest
   stage: deploy
   environment:
     name: staging
     url: https://staging.yourdomain.com
-  before_script:
-    - apk add --no-cache openssh-client rsync bash
   script:
     - echo "Deploying to staging environment..."
     
@@ -161,13 +158,10 @@ deploy_staging:
 
 # Deploy to production
 deploy_production:
-  image: alpine:latest
   stage: deploy
   environment:
     name: production
     url: https://yourdomain.com
-  before_script:
-    - apk add --no-cache openssh-client rsync bash
   script:
     - echo "Deploying to production environment..."
     
@@ -178,7 +172,7 @@ deploy_production:
     - ssh-keyscan -H $PRODUCTION_SERVER >> ~/.ssh/known_hosts
     
     # Create backup before deployment
-    - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd $PRODUCTION_PATH && tar -czf ../backup-$(date +%Y%m%d-%H%M%S).tar.gz . 2>/dev/null || true"
+    - ssh -o StrictHostKeyChecking=no $PRODUCTION_USER@$PRODUCTION_SERVER "cd $PRODUCTION_PATH && tar -czf ../backup-\$(date +%Y%m%d-%H%M%S).tar.gz . 2>/dev/null || true"
     
     # Deploy files (exclude node_modules, will install on server)
     - rsync -avz --delete --exclude 'node_modules' --exclude '.git' --exclude '.env' --exclude '.npm' --exclude 'coverage' ./ $PRODUCTION_USER@$PRODUCTION_SERVER:$PRODUCTION_PATH
