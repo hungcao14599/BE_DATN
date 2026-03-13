@@ -142,7 +142,7 @@ deploy_production:
     # Create backup before deployment
     - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd $PRODUCTION_PATH && tar -czf ../backup-$(date +%Y%m%d-%H%M%S).tar.gz ."
     
-    # Deploy files
+    # Deploy files.  
     - rsync -avz --delete --exclude 'node_modules' --exclude '.git' --exclude '.env' ./ $PRODUCTION_USER@$PRODUCTION_SERVER:$PRODUCTION_PATH
     
     # Install dependencies and restart on server
