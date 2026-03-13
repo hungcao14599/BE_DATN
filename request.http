@@ -1,0 +1,279 @@
+#AUTH
+POST http://localhost:3000/api/auth/register/
+Content-Type: application/json
+#pass
+
+{
+  "username": "admin",
+  "password": "123456",
+  "email": "hungnguyen14599@gmail.com",
+  "firstname": "VIET",
+  "lastname": "HUNG"
+}
+
+###
+
+POST http://localhost:3000/api/auth/login/
+Content-Type: application/json
+#pass
+
+{
+  "email": "nguyentuanminhutt@gmail.com",
+  "password": "123456"
+}
+
+#USER
+###
+
+GET http://localhost:3000/api/users/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM3MTM2NjUyfQ.LMs9no_-n3osxE3B1tiehRktovRRZL4FnO7nEFSjkKY
+#pass
+
+###
+GET http://localhost:3000/api/users/info
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJWacOqzKN0IEjGsG5nIiwiZW1haWwiOiJuZ3V5ZW50dWFubWluaHV0dEBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM4NTIwMTA3fQ.v2tqH46mTI0UGn9tFt8VaWUsDeuVhE-hqvsPJJVGcWc
+#pass
+
+###
+
+PUT http://localhost:3000/api/users/update
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzcyNDg5NjV9.3MVW3syS95TqsJuN6Hg9ALbVVH4QbHsmj83XbvitDSc
+#pass
+{
+  "phone": "0968963562",
+  "description": "TTN1",
+  "address": "Yên Nghĩa, Hà Đông, Hà Nội"
+}
+
+###
+POST http://localhost:3000/api/users/verify
+Content-Type: application/json
+#pass
+
+{
+  "verifyCode": "165445",
+  "email": "hungnguyen14599@gmail.com"
+}
+
+
+###
+GET http://localhost:3000/api/users/find?keyword=987
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM3MTYwNjc3fQ.wJZ22jPxXqh4Q3fIdUrviLq4A5QJWi8yXiNfqeLB4C4
+#pass
+
+###
+GET http://localhost:3000/api/users/block-users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzI1MDI2OH0.9Ieu7xjOWrHv_kbCXfVB9bs_Bs2bTAyJqBWyUB5KhJc
+#pass
+
+###
+POST http://localhost:3000/api/users/block/32
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzU0NzM3Nn0.CjqWvvzgbq9ETJf3_erSEyGTSSMyq0r99cQW1Hf1XNI
+#pass
+
+###
+POST http://localhost:3000/api/users/unblock/32
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzU0NzM3Nn0.CjqWvvzgbq9ETJf3_erSEyGTSSMyq0r99cQW1Hf1XNI
+#pass
+
+
+#POST
+###
+GET http://localhost:3000/api/posts?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzQyNzkyNX0.UQx_cOXN0AFNs1oh-F84rOIdJsD2kspbtDSlNb4T4k4
+###
+GET http://localhost:3000/api/posts/post-item/58
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzgyNDA3NzZ9.9TSU9yWYGEon1AXEbGjWJDGR9TlIgedSf7FhPSTBWw0
+
+###
+POST http://localhost:3000/api/posts/upload/58
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzgyNjI2MTF9.IhaVMHlKPIyHQudpOFHrib8QZDswhefOu8J9KRF1f7Q
+
+{
+  "file": 
+}
+###
+
+###
+POST http://localhost:3000/api/posts/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzgyNDA3NzZ9.9TSU9yWYGEon1AXEbGjWJDGR9TlIgedSf7FhPSTBWw0
+
+{
+  "content": "Miss You 3000",
+  "type": 1
+}
+
+###
+PUT http://localhost:3000/api/posts/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2MzczNzkzNzl9.727YCGzOYzwAKNQs1j3MMeSO1aARBPjUbJg1UHhH2Lo
+
+{
+  "id": 56,
+  "content": "NCC8"
+}
+
+###
+PUT http://localhost:3000/api/posts/delete/187
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo0NCwidXNlcm5hbWUiOiJIxrBuZyBDYW8iLCJlbWFpbCI6Imh1bmdudjcyMEB3cnUudm4iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiVVNFUiJdfSwiaWF0IjoxNjM4NjA1MTk5fQ.Il7erozKBbCfQF4cBIrPc7_lpR-5jLo8e9ubrurHoq4
+
+###
+GET http://localhost:3000/api/posts/user/admin2?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc0NTY0NTh9.nZKvvECg5LA90K3rKndId_PKSff9i7KRxKWyrirq8eA
+
+
+#POSTLIKE
+
+###
+POST http://localhost:3000/api/post-mood/187
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzQ1OTMxOH0.sNGfjt6xlrZWTPsc2JiC2iwX8ii8Y9Rs-Kv2aI-S9gg
+
+
+#POSTCOMMENT
+
+###
+GET http://localhost:3000/api/post-comment/58?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzUxMDI2NH0.V194ns0eMv_38BqkgWUi-hqzcEMNNUoscY7vsZXT0_0
+
+###
+POST http://localhost:3000/api/post-comment/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzUwNjYxNX0.TXXCLCDBSVNfp0aDknAFYciHHonEtWmo2O5AbdEocCk
+
+{
+  "content": "Hey",
+  "postID": 58
+}
+
+###
+PUT http://localhost:3000/api/post-comment/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzUxMDI2NH0.V194ns0eMv_38BqkgWUi-hqzcEMNNUoscY7vsZXT0_0
+
+{
+  "id": 30,
+  "content": "NCC"
+}
+
+###
+PUT http://localhost:3000/api/post-comment/delete/30
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzUxMDI2NH0.V194ns0eMv_38BqkgWUi-hqzcEMNNUoscY7vsZXT0_0
+
+#FRIEND
+
+
+###
+GET http://localhost:3000/api/friend/user-friend?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc1NzM3NTF9.sF4SHcuOcHJOxjOnhKfN1brJq2xAwR8jZ6YLCASZkFw
+
+
+
+###
+GET http://localhost:3000/api/friend/not-friend?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc1NzEwOTl9._D39SFI7INrNmUEF038EWlZaJl1A4JoZeHEDpc-7hGg
+
+
+
+###
+POST http://localhost:3000/api/friend/add/33
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzU3NjQ5MH0.qJylOigJAfcZUgZd9PCNG-Y6jG03bP-YENUpXUU3_Uk
+
+###
+POST http://localhost:3000/api/friend/approval/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc1NzM2Njd9.zyLHdvZ5rUW3-ZGAhYQI0DL2U9cQNQgxjFNNuMCIRz0
+
+{
+  "friend": "32",
+  "isApproval": true
+}
+
+###
+GET http://localhost:3000/api/friend/approval?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc1OTA4NzN9.buBhHi11roDKdBn-hfi_vVPOObAwiNYbFwm9Hg8Iies
+
+# GROUPS
+
+###
+GET http://localhost:3000/api/groups/?&size=10&page=1
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc1OTA4NzN9.buBhHi11roDKdBn-hfi_vVPOObAwiNYbFwm9Hg8Iies
+
+
+###
+POST http://localhost:3000/api/groups
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzc0MTg2MX0.fbUa4Y1K60srF-k9ByktGbh2t4wTGXulKEL8tWgC_PA
+
+{
+  "name": "FPT Software",
+  "description": "El Pueblo Unido"
+}
+
+###
+PUT http://localhost:3000/api/groups
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzc0MTg2MX0.fbUa4Y1K60srF-k9ByktGbh2t4wTGXulKEL8tWgC_PA
+
+{
+  "id": 13,
+  "name": "FPT SOFTWARE",
+  "description": "El Pueblo Unido"
+}
+
+###
+POST http://localhost:3000/api/groups/join-group/10
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMiwidXNlcm5hbWUiOiJhZG1pbjIiLCJlbWFpbCI6Im5ndXllbnR1YW5taW5odXR0QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc3MjU5MTZ9.M7FAMwE5SCTG5zy79ryjaejtFPDkM47PS1Wjl3c3KKI
+
+
+###
+POST http://localhost:3000/api/groups/approval
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc3MjU0NDl9.HWUfedJo7Co9E9eyz5Av6ZVBvTEvwaPbsWI7nFcJEmc
+
+{
+  "userID": 32,
+  "groupID": 10,
+  "isApproval": false
+}
+
+###
+GET http://localhost:3000/api/groups/members/10?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc3Mjc5NzV9.ih9tUyLsM1w6u5SDaRaH9ticiQ_CtT4NB05AOi4hnAY
+
+###
+GET http://localhost:3000/api/groups/users-join/10?size=10&page=1&keyword=hc
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc3Mjc5NzV9.ih9tUyLsM1w6u5SDaRaH9ticiQ_CtT4NB05AOi4hnAY
+
+###
+GET http://localhost:3000/api/groups/groups-info?size=10&page=1&keyword=NCC
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMywidXNlcm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiaHVuZ25ndXllbjE0NTk5QGdtYWlsLmNvbSIsImF2YXRhciI6ImJsYW5rLmpwZyIsInN0YXR1cyI6MSwicm9sZSI6WyJVU0VSIl19LCJpYXQiOjE2Mzc3Mzc5NjR9.lUlpZLgM0a4nvZ10BWB05COfrVXDp21PnoQIH5aBDbM
+
+###
+GET http://localhost:3000/api/groups/other-groups?size=10&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozMSwidXNlcm5hbWUiOiJhZG1pbjEiLCJlbWFpbCI6Im1pbmhjb2xhOTk5OUBnbWFpbC5jb20iLCJhdmF0YXIiOiJibGFuay5qcGciLCJzdGF0dXMiOjEsInJvbGUiOlsiQURNSU4iXX0sImlhdCI6MTYzNzc0MTg2MX0.fbUa4Y1K60srF-k9ByktGbh2t4wTGXulKEL8tWgC_PA
