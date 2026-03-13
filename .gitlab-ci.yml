@@ -156,7 +156,6 @@ deploy_staging:
     - ssh $STAGING_USER@$STAGING_SERVER "cd $STAGING_PATH && npm ci --production && pm2 restart social-network-be-staging || pm2 start bin/www.js --name social-network-be-staging --interpreter babel-node"
   only:
     - develop
-  when: manual
   tags:
     - social-network-tlu-runner
 
@@ -189,6 +188,5 @@ deploy_production:
   only:
     - master
     - main
-  when: manual
   tags:
     - social-network-tlu-runner
