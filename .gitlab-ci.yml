@@ -38,6 +38,8 @@ install_dependencies:
     - main
     - develop
     - merge_requests
+  tags:
+    - social-network-tlu-runner
 
 # Lint and code quality
 code_quality:
@@ -53,6 +55,8 @@ code_quality:
     - main
     - develop
     - merge_requests
+  tags:
+    - social-network-tlu-runner
 
 # Run tests (if you have tests)
 test:
@@ -77,6 +81,8 @@ test:
     - main
     - develop
     - merge_requests
+  tags:
+    - social-network-tlu-runner
 
 # Build application
 build:
@@ -96,6 +102,8 @@ build:
     - master
     - main
     - develop
+  tags:
+    - social-network-tlu-runner
 
 # Deploy to staging
 deploy_staging:
@@ -124,6 +132,8 @@ deploy_staging:
   only:
     - develop
   when: manual
+  tags:
+    - social-network-tlu-runner
 
 # Deploy to production
 deploy_production:
@@ -155,3 +165,5 @@ deploy_production:
     - master
     - main
   when: manual
+  tags:
+    - social-network-tlu-runner
