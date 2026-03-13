@@ -149,8 +149,8 @@ deploy_staging:
     # Deploy files (exclude node_modules, will install on server)
     - rsync -avz --delete --exclude 'node_modules' --exclude '.git' --exclude '.env' --exclude '.npm' --exclude 'coverage' ./ $STAGING_USER@$STAGING_SERVER:$STAGING_PATH
     
-    # Install dependencies and restart on server
-    - ssh $STAGING_USER@$STAGING_SERVER "cd $STAGING_PATH && npm ci --production && pm2 restart social-network-be-staging || pm2 start npm --name social-network-be-staging -- start"
+    # Install dependencies, run audit fix, and restart on server
+    - ssh $STAGING_USER@$STAGING_SERVER "cd $STAGING_PATH && npm ci --production && npm audit fix --production || true && pm2 restart social-network-be-staging || pm2 start npm --name social-network-be-staging -- start"
   only:
     - develop
   tags:
@@ -177,8 +177,8 @@ deploy_production:
     # Deploy files (exclude node_modules, will install on server)
     - rsync -avz --delete --exclude 'node_modules' --exclude '.git' --exclude '.env' --exclude '.npm' --exclude 'coverage' ./ $PRODUCTION_USER@$PRODUCTION_SERVER:$PRODUCTION_PATH
     
-    # Install dependencies and restart on server
-    - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd $PRODUCTION_PATH && npm ci --production && pm2 restart social-network-be || pm2 start npm --name social-network-be -- start"
+    # Install dependencies, run audit fix, and restart on server
+    - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd $PRODUCTION_PATH && npm ci --production && npm audit fix --production || true && pm2 restart social-network-be || pm2 start npm --name social-network-be -- start"
   only:
     - master
     - main
