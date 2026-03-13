@@ -1,8 +1,8 @@
 module.exports = {
-  DB_NAME: "social_network_db",
-  DB_USERNAME: "root",
-  PASSWORD: "123456789!",
-  HOST: "14.225.206.110",
+  DB_NAME: "social_network_tlu",
+  DB_USERNAME: "viethung",
+  PASSWORD: "Boythach199*",
+  HOST: "34.124.191.55",
   dialect: "mysql",
   PORT: "3306",
 };
