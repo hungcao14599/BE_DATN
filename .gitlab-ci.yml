@@ -1,0 +1,152 @@
+stages:
+  - install
+  - test
+  - build
+  - deploy
+
+variables:
+  NODE_VERSION: "16"
+  NPM_CONFIG_CACHE: "$CI_PROJECT_DIR/.npm"
+  
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
+    - .npm/
+
+# Template for Node.js jobs
+.node_template:
+  image: node:${NODE_VERSION}
+  before_script:
+    - node --version
+    - npm --version
+
+# Install dependencies
+install_dependencies:
+  extends: .node_template
+  stage: install
+  script:
+    - npm ci --prefer-offline --no-audit
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 hour
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# Lint and code quality
+code_quality:
+  extends: .node_template
+  stage: test
+  script:
+    - echo "Running code quality checks..."
+    # Add linting if you have ESLint configured
+    # - npm run lint
+  allow_failure: true
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# Run tests (if you have tests)
+test:
+  extends: .node_template
+  stage: test
+  script:
+    - echo "Running tests..."
+    # Uncomment when you have tests
+    # - npm run test
+  coverage: '/Lines\s*:\s*(\d+\.\d+)%/'
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+    paths:
+      - coverage/
+    expire_in: 1 week
+  allow_failure: true
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# Build application
+build:
+  extends: .node_template
+  stage: build
+  script:
+    - echo "Building application..."
+    - npm ci --prefer-offline --no-audit
+    # Add build commands if needed
+    # - npm run build
+  artifacts:
+    paths:
+      - node_modules/
+      - public/
+    expire_in: 1 week
+  only:
+    - master
+    - develop
+
+# Deploy to staging
+deploy_staging:
+  extends: .node_template
+  stage: deploy
+  environment:
+    name: staging
+    url: https://staging.yourdomain.com
+  script:
+    - echo "Deploying to staging environment..."
+    # Example deployment commands
+    # Install SSH client if needed
+    - apt-get update -qq && apt-get install -y -qq sshpass openssh-client rsync
+    
+    # Setup SSH
+    - mkdir -p ~/.ssh
+    - echo "$STAGING_SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -H $STAGING_SERVER >> ~/.ssh/known_hosts
+    
+    # Deploy files
+    - rsync -avz --delete --exclude 'node_modules' --exclude '.git' --exclude '.env' ./ $STAGING_USER@$STAGING_SERVER:$STAGING_PATH
+    
+    # Install dependencies and restart on server
+    - ssh $STAGING_USER@$STAGING_SERVER "cd $STAGING_PATH && npm ci --production && pm2 restart social-network-be-staging || pm2 start bin/www.js --name social-network-be-staging --interpreter babel-node"
+  only:
+    - develop
+  when: manual
+
+# Deploy to production
+deploy_production:
+  extends: .node_template
+  stage: deploy
+  environment:
+    name: production
+    url: https://yourdomain.com
+  script:
+    - echo "Deploying to production environment..."
+    # Install SSH client if needed
+    - apt-get update -qq && apt-get install -y -qq sshpass openssh-client rsync
+    
+    # Setup SSH
+    - mkdir -p ~/.ssh
+    - echo "$PRODUCTION_SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -H $PRODUCTION_SERVER >> ~/.ssh/known_hosts
+    
+    # Create backup before deployment
+    - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd $PRODUCTION_PATH && tar -czf ../backup-$(date +%Y%m%d-%H%M%S).tar.gz ."
+    
+    # Deploy files
+    - rsync -avz --delete --exclude 'node_modules' --exclude '.git' --exclude '.env' ./ $PRODUCTION_USER@$PRODUCTION_SERVER:$PRODUCTION_PATH
+    
+    # Install dependencies and restart on server
+    - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "cd $PRODUCTION_PATH && npm ci --production && pm2 restart social-network-be || pm2 start bin/www.js --name social-network-be --interpreter babel-node"
+  only:
+    - master
+  when: manual
